@@ -1,5 +1,4 @@
-# Cogs 121 #
-### CRAZYLIZZARD ###
+# CRAZYLIZZARD #
 #### Janice Zhou ####
 #### Marcus Buzette ####
 #### Samuel Nye ####
