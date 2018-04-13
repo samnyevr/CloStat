@@ -1,7 +1,10 @@
 # CRAZYLIZZARD
 Janice Zhou
+
 Marcus Buzette
+
 Samuel Nye
+
 Ulric Ye
 
 # Idea #1
