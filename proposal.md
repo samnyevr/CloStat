@@ -1,4 +1,5 @@
-# CRAZYLIZZARD #
+# Cogs 121
+# CRAZYLIZZARD
 Janice Zhou
 Marcus Buzette
 Samuel Nye
