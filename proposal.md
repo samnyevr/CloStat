@@ -1,11 +1,9 @@
-# CRAZYLIZZARD
-Janice Zhou
-
-Marcus Buzette
-
-Samuel Nye
-
-Ulric Ye
+# Cogs 121 #
+### CRAZYLIZZARD ###
+#### Janice Zhou ####
+#### Marcus Buzette ####
+#### Samuel Nye ####
+#### Ulric Ye ####
 
 # Idea #1
 A time management and planning app that uses user behavior (i.e. when they eat, when they start homework, etc.) to predict and plan the best schedule for the user. The app incorporate user's calendar, which have a set time block, to plan their daily/weekly routine based on the data input. In short, it's a plan the quarter app, which is based on the first week’s school schedule, and the google calendar to track user’s daily routine and plan the rest of the quarter for them. User can also input deadline which the app will plan accordingly.
