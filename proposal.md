@@ -1,5 +1,5 @@
 # CRAZYLIZZARD #
-#### Janice Zhou ####
+#### Lixiang Zhou ####
 #### Marcus Buzette ####
 #### Samuel Nye ####
 #### Ulric Ye ####
