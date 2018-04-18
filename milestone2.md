@@ -5,7 +5,7 @@
 This storyboard shows a user figuring out what clothes to wear based on the weather outside using the app.
 
 ### Soryboard 2
-<img src="images/storyboard2.PNG" width=350px>
+<img src="images/storyboard2.png" width=350px>
 This storyboard shows the function of a virtual wardrobe. The user can see all clothes registered in his wardrobe and which ones are available to use.
 
 ### Prototype 1
@@ -27,5 +27,3 @@ This has a little icon that indicate the top they choose, and user can pair a bo
 <img src="images/dressing page.png” width=350px>
 <img src="images/wardrobe page.png” width=350px>
 This prototype opened with a screen of today’s weather to give you suggestion about what to wear according to the weather today and what is available to in your wardrobe.You can swipe to see the category of the clothes for suggestion and also click on the drop down button to see what you can wear.  Another interaction of this app is a visualization of your wardrobe. It shows what you have right now that you can wear and what you have worn. So it can help you manage the  wardrobe easily. 
-
-
