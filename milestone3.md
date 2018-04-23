@@ -24,4 +24,8 @@ This screen from prototype 2 will show suggestions of clothes to wear based on p
 <img src="images/visualization.png" width=350px>
 This screen incorporates the feature of showing worn and clean clothes from prototype 2.
 
+### Add
+<img src="images/add.png" width=350px>
+This screen incorporates the feature of adding clothes, which we forgot to include in both of our prototype.
+
 Our skeleton is a combination of both of our paper prototypes in milestone2.md. We used elements from both paper prototype because we realized that there were elements that were good in both paper prototypes, but both can also be improved by tweaking some things. We used the bubble feature in the first prototype because it was neat and easy for users to tap. We also put the weather on the top in a small scale (just like in prototype 1) because the weather was not the main feature of our app. We included the wardrobe option and the suggestion feature from the second prototype. We also included visualization of the wardrobe to show what can be wear and what is already worned. 
