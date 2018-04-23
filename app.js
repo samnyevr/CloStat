@@ -2,23 +2,23 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var handlebars = require('express3-handlebars')
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const handlebars = require('express3-handlebars')
 
-var index = require('./routes/index');
-var closet = require('./routes/closet');
-var stat = require('./routes/stat');
-var suggestion = require('./routes/suggestion');
-var top = require('./routes/top');
-var bottom = require('./routes/bottom');
-var washing = require('./routes/washing');
+const index = require('./routes/index');
+const closet = require('./routes/closet');
+const stat = require('./routes/stat');
+const suggestion = require('./routes/suggestion');
+const top = require('./routes/top');
+const bottom = require('./routes/bottom');
+const washing = require('./routes/washing');
 
 // Example route
 // var user = require('./routes/user');
 
-var app = express();
+const app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,12 +33,24 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('IxD secret key'));
 app.use(express.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+const data = require('./data.json')
+
+app.get('/items', (req, res) => {
+  const allItems = Object.keys(data); // returns a list of object keys
+  console.log('allItems is:', allItems);
+  res.send(allItems);
+});
+
+
+
+
 
 app.get('/', index.view);
 app.get('/closet', closet.view);

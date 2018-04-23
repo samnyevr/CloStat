@@ -11,6 +11,44 @@
 </head>
 
 <body>
+	<script type="text/javascript">
+		$(document).ready(() =>{
+			console.log("jQuery on");
+			$('#clean').click(() => {
+				console.log('clean');
+
+				$.ajax({
+					url: 'items/',
+					type: 'GET',
+					dataType: 'json',
+					success: (data) =>{
+						console.log('ajax success', data);
+						$('.percentage').attr('src','/images/Stas.jpg');
+						$('#percentNumber').html('63%');
+						$('#items').html('{{#each tops}} <h2 class="list">{{name}}</h2>{{/each}}');
+
+					}
+				})
+			})
+			$('#dirty').click(() => {
+				console.log('dirty');
+
+				$.ajax({
+					url: 'items/',
+					type: 'GET',
+					dataType: 'json',
+					success: (data) =>{
+						console.log('ajax success', data);
+						$('.percentage ').attr('src','/images/washing.jpg');
+						$('#percentNumber').html('37%');
+						$('#items').html('{{#each topsDirtty}} <h2 class="list">{{name}}</h2>{{/each}}');
+
+					}
+				})
+			})
+		})
+
+	</script>
 	<div class="container">
 
 		<i class="fa fa-plus" style="font-size:24px;margin-left:95%;margin-top:5%;color:black"></i>
@@ -19,20 +57,23 @@
 		<h1>Top</h1>
 		<img class="percentage"src="/images/Stas.jpg">
 		<br><br><br>
-		{{#each tops}}
-			<div>
+			<div id="items">
+				{{#each tops}}
+			
 	        		<h2 class="list">{{name}}</h2>
 
+	    		{{/each}}
 	    	</div>
-		{{/each}}
-    <h2 style="text-align:left; margin-left:25%">63%</h2>
+
+    <h2 id="percentNumber" style="text-align:left; margin-left:25%">63%</h2>
 		<br><br><br>
 
 		<div class="navbar">
 			<ul>
-				<li style="margin-left:10%"><a href="/stat"><img src="images/casual-t-shirt-.svg"></a></li>
-				<li style="margin-left:10%"><a href="/washing"><img src="images/washing-machine.svg"></a></li>
+				<li id="clean" style="margin-left:10%"><img src="images/casual-t-shirt-.svg"></li>
+				<li id="dirty" style="margin-left:10%"><img src="images/washing-machine.svg"></li>
 			</ul>
 		</div>
+	</div>
 
 </html>
