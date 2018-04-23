@@ -1,9 +1,21 @@
 body {
-  background: #BFE9FF;
+  background: #D2E7E8;
   color: #F19CA2;
 }
 
-h1{
+.list{
+  text-align: left;
+  margin-left: 60%;
+  margin-top: 5%;
+}
+
+.percentage{
+  position: absolute;
+  width:15%;
+  top: 28%;
+  left: 22%;
+  height: 50%;
+
 }
 
 .container{
@@ -14,21 +26,21 @@ h1{
 }
 
 .weather{
-    border: 10px solid #B7D7D9;
+    border: 10px solid #FFFFFF;
 }
 
 .top img{
     width: 50%;
     max-height: 20vh;
     border-radius: 50%;
-    border: 10px solid #B7D7D9;
+    border: 10px solid #FFFFFF;
 }
 
 .bottom img{
     width: 50%;
     max-height: 20vh;
     border-radius: 50%;
-    border: 10px solid #B7D7D9;
+    border: 10px solid #FFFFFF;
 }
 
 ul {

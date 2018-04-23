@@ -13,6 +13,8 @@ var stat = require('./routes/stat');
 var suggestion = require('./routes/suggestion');
 var top = require('./routes/top');
 var bottom = require('./routes/bottom');
+var washing = require('./routes/washing');
+
 // Example route
 // var user = require('./routes/user');
 
@@ -44,6 +46,7 @@ app.get('/stat', stat.view);
 app.get('/suggestion', suggestion.view);
 app.get('/top', top.view);
 app.get('/bottom', bottom.view);
+app.get('/washing', washing.view);
 // Example route
 // app.get('/users', user.list);
 

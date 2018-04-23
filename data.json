@@ -1,0 +1,107 @@
+{
+	"tops": [
+		{
+			"topId": "1",
+			"name": "Blue shirt",
+			"imageURL": ""
+		},
+    {
+			"topId": "2",
+			"name": "Pink Shirt",
+			"imageURL": ""
+		},
+    {
+			"topId": "3",
+			"name": "Orange Tee",
+			"imageURL": ""
+		},
+    {
+			"topId": "4",
+			"name": "NASA Tee",
+			"imageURL": ""
+		},
+    {
+			"topId": "5",
+			"name": "UCSD Sweater",
+			"imageURL": ""
+		},
+    {
+			"topId": "6",
+			"name": "Wave Hoodie",
+			"imageURL": ""
+		},
+    {
+			"topId": "7",
+			"name": "Pocket Tee",
+			"imageURL": ""
+		}
+
+  ],
+	"topsDirtty": [
+		{
+			"topDirttyId": "1",
+			"name": "Strip Tee",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "2",
+			"name": "Track Jacket",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "3",
+			"name": "Zip Shirt",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "4",
+			"name": "Bomber Jacket",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "5",
+			"name": "Biker Jacket",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "6",
+			"name": "Zip-Up Shirt",
+			"imageURL": ""
+		},
+    {
+			"topDirttyId": "7",
+			"name": "Coach Tee",
+			"imageURL": ""
+		}
+
+  ],
+
+
+  "bottoms": [
+		{
+			"bottomId": "1",
+			"name": "Light Blue Jeans",
+			"imageURL": ""
+		},
+    {
+			"bottomId": "2",
+			"name": "Black Sweatpant",
+			"imageURL": ""
+		},
+    {
+			"bottomId": "3",
+			"name": "Corduroy Short",
+			"imageURL": ""
+		},
+    {
+			"bottomId": "4",
+			"name": "Baggies Short",
+			"imageURL": ""
+		},
+    {
+			"bottomId": "5",
+			"name": "Beige Pant",
+			"imageURL": ""
+		}
+  ]
+}
