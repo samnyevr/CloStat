@@ -14,6 +14,7 @@ const suggestion = require('./routes/suggestion');
 const top = require('./routes/top');
 const bottom = require('./routes/bottom');
 const washing = require('./routes/washing');
+const add = require('./routes/add');
 
 // Example route
 // var user = require('./routes/user');
@@ -59,6 +60,7 @@ app.get('/suggestion', suggestion.view);
 app.get('/top', top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
+app.get('/add', add.view);
 // Example route
 // app.get('/users', user.list);
 
