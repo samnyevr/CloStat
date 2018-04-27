@@ -1,5 +1,4 @@
 body {
-  background: #D2E7E8;
   color: #F19CA2;
 }
 
@@ -27,6 +26,26 @@ body {
 
 .weather{
     border: 10px solid #FFFFFF;
+    width: 30%;
+    color: white;
+    display:inline;
+    float: left;
+}
+
+#clr{
+  clear:both;
+}
+
+#clrright{
+  clear:right;
+}
+
+.rec img{
+  width:50%;
+  max-height: 10vh;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  float: right;
 }
 
 .top img{
@@ -68,5 +87,5 @@ li a {
 }
 
 li a:hover {
-    background-color: #111111;
+    background-color: #fff;
 }
