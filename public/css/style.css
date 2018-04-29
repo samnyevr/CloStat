@@ -1,5 +1,6 @@
 body {
   color: #F19CA2;
+  height: 100%;
 }
 
 .list{
@@ -22,6 +23,7 @@ body {
     padding: 0;
     width: 100%;
     text-align: center;
+
 }
 
 .weather{

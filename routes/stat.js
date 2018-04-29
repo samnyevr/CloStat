@@ -1,5 +1,5 @@
 
 exports.view = function(req, res){
-    res.render('stat', data);
+    res.render('stat');
 
 };
