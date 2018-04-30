@@ -55,7 +55,7 @@ app.get('/items', (req, res) => {
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('pets.db');
 
-db.seralize(() =>{
+db.serialize(() =>{
   db.run("CREATE TABLE users_to_pets (name TEXT, job TEXT, pet TEXT)");
   db.run("INSERT INTO users_to_pets VALUES('Philip', 'professor', 'cat.jpg')");
 
