@@ -7,12 +7,45 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div class="container">
 		<a href="/">What to Wear Today</a>
 	<h1>Bottom</h1>
+	<div class="panel-group" id="accordion">
+	    <div class="panel panel-default">
+	      <div data-toggle="collapse" data-parent="#accordion" href="#collapse1"class="panel-heading">
+					<img width="120" src="/images/lightBlueJeans.jpeg">
+	        <span class="panel-title" > Light Blue Jeans</span>
+	      </div>
+	      <div id="collapse1" class="panel-collapse collapse in">
+	        <div class="panel-body">You have worn this shirt 3 times this month. </div>
+	      </div>
+	    </div>
+	    <div class="panel panel-default">
+				<div data-toggle="collapse" data-parent="#accordion" href="#collapse2"class="panel-heading">
+				 <img width="120" src="/images/SeelandTrousers.jpg">
+				 <span class="panel-title">Seeland Trouser</span>
+	      </div>
+	      <div id="collapse2" class="panel-collapse collapse">
+	        <div class="panel-body">You have not worn this shirt since last year. </div>
+	      </div>
+	    </div>
+	    <div class="panel panel-default">
+				<div data-toggle="collapse" data-parent="#accordion" href="#collapse3"class="panel-heading">
+				 <img width="120" src="/images/blackShort.jpg">
+				 <span class="panel-title"> Black Shorts</span>s
+	      </div>
+	      <div id="collapse3" class="panel-collapse collapse">
+	        <div class="panel-body">You have worn this tee 2 times this month</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	</div>
 </body>
 
