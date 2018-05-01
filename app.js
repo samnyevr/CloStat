@@ -42,18 +42,68 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-const data = require('./data.json')
-
+//const data = require('./data.json')
+/*
 app.get('/items', (req, res) => {
   const allItems = Object.keys(data); // returns a list of object keys
   console.log('allItems is:', allItems);
   res.send(allItems);
 });
 
+*/
+
 // database stuffs
 
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('closet.db');
+
+app.get('/tops', (req, res) => {
+  db.all('SELECT name FROM tops', (err,rows) => {
+  	console.log(rows);
+  	const allTops = rows.map(e => e.name);
+  	console.log(allTops);
+  	res.send(allTops);
+  });
+  //console.log('allItems is:', allItems);
+  //res.send(allItems);
+});
+
+app.get('/bottoms', (req, res) => {
+  db.all('SELECT name FROM bottoms', (err,rows) => {
+  	console.log(rows);
+  	const allBottoms = rows.map(e => e.name);
+  	console.log(allBottoms);
+  	res.send(allBottoms);
+  });
+});
+
+app.get('/accessories', (req, res) => {
+  db.all('SELECT name FROM bottoms', (err,rows) => {
+  	console.log(rows);
+  	const allAccessories = rows.map(e => e.name);
+  	console.log(allAccessories);
+  	res.send(allAccessories);
+  });
+});
+
+app.get('/items', (req, res) => {
+	let allItems;
+	  db.all('SELECT name FROM tops', (err,rows) => {
+	  	console.log(rows);
+	  	allItems = rows.map(e => e.name);
+	  	//console.log(allItems);
+	  	//res.send(allItems);
+	  });
+	  db.all('SELECT name FROM bottoms', (err,rows) => {
+	  	console.log(rows);
+	  	allItems[0] = rows.map(e => e.name);
+
+	  	//console.log(allItems);
+	  	//res.send(allItems);
+	  });
+	  //console.log(allItems);
+});
+
 
 
 
