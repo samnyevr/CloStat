@@ -87,21 +87,15 @@ app.get('/accessories', (req, res) => {
 });
 
 app.get('/items', (req, res) => {
-	let allItems;
-	  db.all('SELECT name FROM tops', (err,rows) => {
+	
+	  db.all('SELECT tops.name FROM tops UNION ALL SELECT bottoms.name FROM bottoms', (err,rows) => {
+	  	console.log(err);
 	  	console.log(rows);
-	  	allItems = rows.map(e => e.name);
+	  	//const allItems = rows.map(e => e.name);
 	  	//console.log(allItems);
 	  	//res.send(allItems);
 	  });
-	  db.all('SELECT name FROM bottoms', (err,rows) => {
-	  	console.log(rows);
-	  	allItems[0] = rows.map(e => e.name);
-
-	  	//console.log(allItems);
-	  	//res.send(allItems);
-	  });
-	  //console.log(allItems);
+	 
 });
 
 
