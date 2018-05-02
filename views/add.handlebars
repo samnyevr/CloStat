@@ -20,7 +20,7 @@
               status: $('#status').val()
             },
       success: (data) => {
-        $('#status').html(data.message);
+        console.log('added!')
       }
     });
   });
@@ -38,7 +38,7 @@
 			</div>
 			<br>
       <div>
-        <label for="description"> </label>
+        <label for="description">Numer of Usage </label>
         <input type="text" class="form-control" id="description" placeholder="Description" name="description">
 
 
