@@ -1,6 +1,12 @@
 body {
-  color: #F19CA2;
+  color: #fff;
   height: 100%;
+  margin-bottom: 30px;
+}
+
+html{
+  height: 100%;
+  width: 100%;
 }
 
 .list{
@@ -24,7 +30,7 @@ body {
     width: 100%;
     text-align: center;
     min-height: 100%;
-
+    background: linear-gradient(#d1e1f9, #b0cffc, #7bb0fc);
 }
 
 .weather{
@@ -125,5 +131,3 @@ li a:hover {
 .active {
     background-color: #5bc5ff !important;
 }
-
-html { margin-bottom: 30px }

@@ -25,14 +25,12 @@
 
 
       function drawChart() {
-				console.log("jQuery on");
 
 					$.ajax({
 						url: '/tops',
 						type: 'GET',
 						dataType: 'json',
 						success: (data) =>{
-							console.log('ajax success', data);
 
 							const list = new google.visualization.DataTable();
 							list.addColumn('string', 'cloth');
