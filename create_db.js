@@ -29,6 +29,9 @@ db.serialize(() =>{
   db.run("INSERT INTO bottoms VALUES ('4','dirty',NULL,'Baggies Short',NULL,0)");
   db.run("INSERT INTO bottoms VALUES ('5','dirty',NULL,'Beige Pant',NULL,0)");
 
+  db.run("INSERT INTO accessories VALUES ('1','Gold Watch',NULL,0)");
+  db.run("INSERT INTO accessories VALUES ('2','Silver Necklace',NULL,0)");
+
 
 
 });

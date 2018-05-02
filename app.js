@@ -42,17 +42,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//const data = require('./data.json')
-/*
-app.get('/items', (req, res) => {
-  const allItems = Object.keys(data); // returns a list of object keys
-  console.log('allItems is:', allItems);
-  res.send(allItems);
-});
 
-*/
-
-// database stuffs
 
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('closet.db');
@@ -78,7 +68,7 @@ app.get('/bottoms', (req, res) => {
 });
 
 app.get('/accessories', (req, res) => {
-  db.all('SELECT name FROM bottoms', (err,rows) => {
+  db.all('SELECT name FROM accessories', (err,rows) => {
   	console.log(rows);
   	const allAccessories = rows.map(e => e.name);
   	console.log(allAccessories);
@@ -88,12 +78,9 @@ app.get('/accessories', (req, res) => {
 
 app.get('/items', (req, res) => {
 	
-	  db.all('SELECT tops.name FROM tops UNION ALL SELECT bottoms.name FROM bottoms', (err,rows) => {
-	  	console.log(err);
-	  	console.log(rows);
-	  	//const allItems = rows.map(e => e.name);
-	  	//console.log(allItems);
-	  	//res.send(allItems);
+	  db.all('SELECT tops.name FROM tops UNION ALL SELECT bottoms.name FROM bottoms UNION ALL SELECT accessories.name FROM accessories', (err,rows) => {
+	  	const allItems = rows.map(e => e.name);
+	  	res.send(allItems);
 	  });
 	 
 });
