@@ -48,10 +48,9 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('closet.db');
 
 app.get('/tops', (req, res) => {
-  db.all('SELECT name FROM tops', (err,rows) => {
-  	console.log(rows);
+  db.all('SELECT * FROM tops', (err,rows) => {
+
   	const allTops = rows.map(e => e.name);
-  	console.log(allTops);
   	res.send(allTops);
   });
   //console.log('allItems is:', allItems);
@@ -59,27 +58,24 @@ app.get('/tops', (req, res) => {
 });
 
 app.get('/bottoms', (req, res) => {
-  db.all('SELECT name FROM bottoms', (err,rows) => {
-  	console.log(rows);
+  db.all('SELECT * FROM bottoms', (err,rows) => {
+
   	const allBottoms = rows.map(e => e.name);
-  	console.log(allBottoms);
   	res.send(allBottoms);
   });
 });
 
 app.get('/accessories', (req, res) => {
-  db.all('SELECT name FROM accessories', (err,rows) => {
-  	console.log(rows);
+  db.all('SELECT * FROM accessories', (err,rows) => {
   	const allAccessories = rows.map(e => e.name);
-  	console.log(allAccessories);
   	res.send(allAccessories);
   });
 });
 
 app.get('/items', (req, res) => {
 	
-	  db.all('SELECT tops.name FROM tops UNION ALL SELECT bottoms.name FROM bottoms UNION ALL SELECT accessories.name FROM accessories', (err,rows) => {
-	  	const allItems = rows.map(e => e.name);
+	  db.all('SELECT * FROM tops UNION  SELECT * FROM bottoms UNION  SELECT id,NULL as status, NULL as temperature,name,lastUsed,numberUsage FROM accessories', (err,rows) => {
+	  	const allItems = rows;
 	  	res.send(allItems);
 	  });
 	 
