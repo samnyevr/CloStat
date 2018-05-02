@@ -17,6 +17,7 @@
 	<script type="text/javascript">
 		$(document).ready(() =>{
 			console.log("jQuery on");
+			let clickTime=true;
 
 				$.ajax({
 					url: '/tops',
@@ -35,10 +36,15 @@
 						}
 					}
 				}
+
 				})
+				clickTime=false;
 
 			$('#filter').click(() => {
 				console.log('dirty');
+				var myNode = document.getElementById("items");
+				myNode.innerHTML = '';
+				if (!clickTime) {
 
 				$.ajax({
 					url: '/tops',
@@ -56,6 +62,31 @@
 					}
 				}
 				})
+				clickTime=true;
+			}
+			else {
+				$.ajax({
+					url: '/tops',
+					type: 'GET',
+					dataType: 'json',
+					success: (data) =>{
+						console.log('ajax success', data);
+
+
+						$('.percentage').attr('src','/images/Stas.jpg');
+						//$('#percentNumber').html('63%');
+						//$('#items').html('{{#each data}} <h2 class="list">{{name}}</h2>{{/each}}');
+						for(const item of data) {
+							if (item.status=='clean') {
+							$('#items').append(`<h4 class="list">${item.name}</h4>`);
+						}
+					}
+				}
+
+				})
+				clickTime=false;
+
+			}
 			})
 
 		})

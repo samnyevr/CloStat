@@ -73,12 +73,36 @@ app.get('/accessories', (req, res) => {
 });
 
 app.get('/items', (req, res) => {
-	
+
 	  db.all('SELECT * FROM tops UNION  SELECT * FROM bottoms UNION  SELECT id,NULL as status, NULL as temperature,name,lastUsed,numberUsage FROM accessories', (err,rows) => {
 	  	const allItems = rows;
 	  	res.send(allItems);
 	  });
-	 
+
+});
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
+app.post('/new', (req, res) => {
+  console.log(req.body);
+
+  db.run(
+    'INSERT INTO tops VALUES  ($name, $numberUsage, $status)',
+    // parameters to SQL query:
+    {
+      $name: req.body.name,
+      $numberUsage: req.body.numberUsage,
+      $status: req.body.status,
+    },
+    // callback function to run when the query finishes:
+    (err) => {
+      if (err) {
+        res.send({message: 'error in app.post(/users)'});
+      } else {
+        res.send({message: 'successfully run app.post(/users)'});
+      }
+    }
+  );
 });
 
 
