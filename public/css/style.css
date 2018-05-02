@@ -91,3 +91,37 @@ li a {
 li a:hover {
     background-color: #fff;
 }
+
+.icon-bar {
+    width: 100%;
+    background-color: #54c0ff;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+}
+
+.icon-bar a {
+    float: left;
+    width: 33.3%;
+    display: block;
+    text-align: center;
+    padding: 11px ;
+    transition: all 0.2s ease;
+    color: white;
+    font-size: 30px;
+}
+
+.icon-bar a:hover {
+    background-color: #ffffff;
+}
+
+.active {
+    background-color: #5bc5ff !important;
+}
+
+
+.container {
+  min-height: 100%;
+}
+
+html { margin-bottom: 30px }
