@@ -7,6 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 	<!--
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -56,7 +61,7 @@
        console.log("jQuery on");
        $('#clean').click(() => {
          console.log('clean');
- 
+
          $.ajax({
            url: 'items/',
            type: 'GET',
@@ -66,13 +71,13 @@
              $('.percentage').attr('src','/images/Stas.jpg');
              $('#percentNumber').html('63%');
              $('#items').html('{{#each tops}} <h2 class="list">{{name}}</h2>{{/each}}');
- 
+
            }
          })
        })
        $('#dirty').click(() => {
          console.log('dirty');
- 
+
          $.ajax({
            url: 'items/',
            type: 'GET',
@@ -82,12 +87,12 @@
              $('.percentage ').attr('src','/images/washing.jpg');
              $('#percentNumber').html('37%');
              $('#items').html('{{#each topsDirtty}} <h2 class="list">{{name}}</h2>{{/each}}');
- 
+
            }
          })
        })
      })
- 
+
    </script>
 
 </head>
@@ -98,6 +103,12 @@
 	<h1>Stat</h1>
 
 
+	</div>
+	<div class="icon-bar">
+
+		<a href="/closet"><i class="fas fa-bath"></i></a>
+		<a href="/"><i class="fas fa-sun"></i></a>
+		<a href="/stat"><i class="far fa-chart-bar"></i></a>
 	</div>
 </body>
 
