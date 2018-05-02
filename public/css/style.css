@@ -23,15 +23,21 @@ body {
     padding: 0;
     width: 100%;
     text-align: center;
+    min-height: 100%;
 
 }
 
 .weather{
-    border: 10px solid #FFFFFF;
-    width: 30%;
-    color: white;
+    width: 50%;
+    font-size: 25px;
+    color: black;
     display:inline;
     float: left;
+}
+
+.weather img{
+    width: 50%;
+    max-height: 15vh;
 }
 
 #clr{
@@ -46,22 +52,23 @@ body {
   width:50%;
   max-height: 10vh;
   border-radius: 50%;
-  border: 5px solid #FFF;
+  border: 5px solid black;
   float: right;
+  display: none;
 }
 
 .top img{
     width: 50%;
-    max-height: 20vh;
+    max-height: 25vh;
     border-radius: 50%;
-    border: 10px solid #FFFFFF;
+    border: 5px solid black;
 }
 
 .bottom img{
     width: 50%;
-    max-height: 20vh;
+    max-height: 25vh;
     border-radius: 50%;
-    border: 10px solid #FFFFFF;
+    border: 5px solid black;
 }
 
 ul {
@@ -117,11 +124,6 @@ li a:hover {
 
 .active {
     background-color: #5bc5ff !important;
-}
-
-
-.container {
-  min-height: 100%;
 }
 
 html { margin-bottom: 30px }

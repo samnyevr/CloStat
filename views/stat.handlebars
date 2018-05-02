@@ -6,110 +6,66 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!--
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-
+  <script type="text/javascript">
+			$(document).ready(() =>{
       // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
 
-			// or this
-			google.chars.setOnLoadCallback(() =>{
-					drawChart1();
-					drawChart2();
-			});
-
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
+
+
       function drawChart() {
+				console.log("jQuery on");
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
+					$.ajax({
+						url: '/tops',
+						type: 'GET',
+						dataType: 'json',
+						success: (data) =>{
+							console.log('ajax success', data);
 
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
+							const list = new google.visualization.DataTable();
+							list.addColumn('string', 'cloth');
+							list.addColumn('number', 'weared');
+							for(const item of data) {
+								list.addRow([item.name,item.numberUsage]);
+							}
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
+							// Instantiate and draw our chart, passing in some options.
+							let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+							chart.draw(list);
+						}
+					});
+
+
       }
-    </script>-->
+		});
 
-    <script type="text/javascript">
-     $(document).ready(() =>{
-       console.log("jQuery on");
-       $('#clean').click(() => {
-         console.log('clean');
 
-         $.ajax({
-           url: 'items/',
-           type: 'GET',
-           dataType: 'json',
-           success: (data) =>{
-             console.log('ajax success', data);
-             $('.percentage').attr('src','/images/Stas.jpg');
-             $('#percentNumber').html('63%');
-             $('#items').html('{{#each tops}} <h2 class="list">{{name}}</h2>{{/each}}');
-
-           }
-         })
-       })
-       $('#dirty').click(() => {
-         console.log('dirty');
-
-         $.ajax({
-           url: 'items/',
-           type: 'GET',
-           dataType: 'json',
-           success: (data) =>{
-             console.log('ajax success', data);
-             $('.percentage ').attr('src','/images/washing.jpg');
-             $('#percentNumber').html('37%');
-             $('#items').html('{{#each topsDirtty}} <h2 class="list">{{name}}</h2>{{/each}}');
-
-           }
-         })
-       })
-     })
-
-   </script>
+		</script>
 
 </head>
 
 <body>
 	<div class="container">
-				<a href="/">What to Wear Today</a>
-	<h1>Stat</h1>
-
-
+		<h1>ClothStat</h1>
+		<h1>Stat</h1>
+		<div id="chart_div"></div>
 	</div>
 	<div class="icon-bar">
-
 		<a href="/closet"><i class="fas fa-bath"></i></a>
 		<a href="/"><i class="fas fa-sun"></i></a>
 		<a href="/stat"><i class="far fa-chart-bar"></i></a>
 	</div>
 </body>
-
 </html>

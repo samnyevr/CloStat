@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
 	$('#confirm').click(() => {
@@ -29,31 +31,33 @@
 
 <body>
 	<div class="container">
-
+		<h1>ClothStat</h1>
     <h3>Add Clothes</h3>
-      <div class="form-group">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+		</div>
+		<br>
 
-        <label for="name">Name: </label>
-        <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-			</div>
-			<br>
-      <div>
-        <label for="description">Numer of Usage </label>
-        <input type="text" class="form-control" id="description" placeholder="Description" name="description">
+    <div>
+      <label for="description">Numer of Usage </label>
+      <input type="text" class="form-control" id="description" placeholder="Description" name="description">
+    </div>
+		<br>
 
+		<div>
+      <label for="status">Clean/Dirty: </label>
+      <input type="text" class="form-control" id="status" placeholder="Status" name="status">
+    </div>
+		<br>
 
-      </div>
-			<br>
-			<div>
-        <label for="status">Clean/Dirty: </label>
-        <input type="text" class="form-control" id="status" placeholder="Status" name="status">
-
-
-      </div>
-			<br>
-			<a id="confirm" href="/closet"><button type="button">Add!</button></a>
-
-
-</div>
+		<a id="confirm" href="/closet"><button type="button">Add!</button></a>
+	</div>
+	<div class="icon-bar">
+		<a href="/closet"><i class="fas fa-bath"></i></a>
+		<a href="/"><i class="fas fa-sun"></i></a>
+		<a href="/stat"><i class="far fa-chart-bar"></i></a>
+	</div>
+</body>
 
 </html>

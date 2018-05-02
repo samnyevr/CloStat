@@ -61,9 +61,13 @@ $(document).ready(function() {
         const condition = response.weather[0];
         const windSpeed = response.wind.speed;
         const windCar = toCardinal(response.wind.deg);
-        $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
+        //$('.weather').text(`${temp}°F`)
+        //$('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
         // $('.weather p').text(`${windCar} ${windSpeed} mph`)
-        // console.log('The current condition is ', condition);
+        // console.log('The current condition is ', condition.main);
+         if(condition.main=="Rain"){
+           $('.weather').html(`${temp}°F` +'<img src="images/rain.png">');
+         }
         // console.log('The wind speed is ', windSpeed);
         // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
     }
@@ -82,21 +86,24 @@ function getWeatherInfo(permission) {
                 getElements(response);
             }
         }
-    
+
         request.open("GET", url, true);
         request.send();
-    
+
         getElements = function(response) {
             const temp = Math.round(toFahrenheit(response.main.temp));
             const condition = response.weather[0];
             const windSpeed = response.wind.speed;
             const windCar = toCardinal(response.wind.deg);
-            $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
+            if(condition.main=="Rain"){
+              $('.weather').html(`${temp}°F` +'<img src="images/rain.png">');
+            }
+            //$('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
             // $('.weather p').text(`${windCar} ${windSpeed} mph`)
             // console.log('The current condition is ', condition);
             // console.log('The wind speed is ', windSpeed);
             // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
-        }        
+        }
     } else {
         const city = 'San%20Diego';
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
@@ -107,16 +114,19 @@ function getWeatherInfo(permission) {
                 getElements(response);
             }
         }
-    
+
         request.open("GET", url, true);
         request.send();
-    
+
         getElements = function(response) {
             const temp = Math.round(toFahrenheit(response.main.temp));
             const condition = response.weather[0];
             const windSpeed = response.wind.speed;
             const windCar = toCardinal(response.wind.deg);
-            $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
+            if(condition.main=="Rain"){
+              $('.weather').html(`${temp}°F` +'<img src="images/rain.png">');
+            }
+            //$('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
             // $('.weather p').text(`${windCar} ${windSpeed} mph`)
             // console.log('The current condition is ', condition);
             // console.log('The wind speed is ', windSpeed);
