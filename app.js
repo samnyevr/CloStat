@@ -50,7 +50,7 @@ const db = new sqlite3.Database('closet.db');
 app.get('/tops', (req, res) => {
   db.all('SELECT * FROM tops', (err,rows) => {
 
-  	const allTops = rows.map(e => e.name);
+  	const allTops = rows;
   	res.send(allTops);
   });
   //console.log('allItems is:', allItems);
@@ -60,14 +60,14 @@ app.get('/tops', (req, res) => {
 app.get('/bottoms', (req, res) => {
   db.all('SELECT * FROM bottoms', (err,rows) => {
 
-  	const allBottoms = rows.map(e => e.name);
+  	const allBottoms = rows;
   	res.send(allBottoms);
   });
 });
 
 app.get('/accessories', (req, res) => {
   db.all('SELECT * FROM accessories', (err,rows) => {
-  	const allAccessories = rows.map(e => e.name);
+  	const allAccessories = rows;
   	res.send(allAccessories);
   });
 });
