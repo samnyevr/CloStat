@@ -28,8 +28,10 @@
 						
 						$('.percentage').attr('src','/images/Stas.jpg');
 						//$('#percentNumber').html('63%');
-						$('#items').html('{{#each data}} <h2 class="list">{{name}}</h2>{{/each}}');
-
+						//$('#items').html('{{#each data}} <h2 class="list">{{name}}</h2>{{/each}}');
+						for(const item of data) {
+							$('#items').append(`<h2 class="list">${item.name}</h2>`);
+						}
 					}
 				})
 /*
