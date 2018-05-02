@@ -1,31 +1,31 @@
 # Milestone 3
 
 ### Home Screen
-<img src="images/main_screen.png" width=350px>
+<img src="images/milestone3/main_screen.png" width=350px>
 This screen contains the bubble feature and small weather display from prototype 1. Additionally, we added smaller icons at the bottom to navigate around.
 
 ### Top
-<img src="images/top.png" width=350px>
+<img src="images/milestone3/top.png" width=350px>
 This screen will show the tops and their preview from prototype 2 once there's more user data.
 
 ### Bottom
-<img src="images/bottom.png" width=350px>
+<img src="images/milestone3/bottom.png" width=350px>
 This screen will show the bottoms and their preview from prototype 2 once there's more user data.
 
 ### Closet
-<img src="images/closet.png" width=350px>
+<img src="images/milestone3/closet.png" width=350px>
 This screen will show the closet of clothes from prototype 2.
 
 ### Suggestion
-<img src="images/suggestion.png" width=350px>
+<img src="images/milestone3/suggestion.png" width=350px>
 This screen from prototype 2 will show suggestions of clothes to wear based on past user wear data.
 
 ### Visualization
-<img src="images/visualization.png" width=350px>
+<img src="images/milestone3/visualization.png" width=350px>
 This screen incorporates the feature of showing worn and clean clothes from prototype 2.
 
 ### Add
-<img src="images/add.png" width=350px>
+<img src="images/milestone3/add.png" width=350px>
 This screen incorporates the feature of adding clothes, which we forgot to include in both of our prototype.
 
 ### Conclusion
