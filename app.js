@@ -7,6 +7,7 @@ const http = require('http');
 const path = require('path');
 const handlebars = require('express3-handlebars')
 
+const login = require('./routes/login');
 const index = require('./routes/index');
 const closet = require('./routes/closet');
 const stat = require('./routes/stat');
@@ -105,7 +106,8 @@ app.post('/new', (req, res) => {
 
 
 
-app.get('/', index.view);
+app.get('/', login.view);
+app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
 app.get('/suggestion', suggestion.view);
