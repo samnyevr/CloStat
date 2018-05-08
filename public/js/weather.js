@@ -93,6 +93,7 @@ function getWeatherInfo(request, url) {
     request.open("GET", url, true);
     request.send();
 
+    // Use local storage to store info 
     getElements = function(response) {
         const temp = Math.round(toFahrenheit(response.main.temp));
         const condition = response.weather[0];
