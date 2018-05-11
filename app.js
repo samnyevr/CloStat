@@ -83,7 +83,7 @@ app.get('/items', (req, res) => {
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
-app.post('/new', (req, res) => {
+app.post('/tops', (req, res) => {
   console.log(req.body);
 
   db.run(

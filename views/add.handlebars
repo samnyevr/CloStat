@@ -9,10 +9,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
+	$(document).ready(() =>{
+		console.log('jQ')
 	$('#confirm').click(() => {
+
     $.ajax({
       // all URLs are relative to http://localhost:3000/
-      url: 'new',
+      url: 'tops',
       type: 'POST', // <-- this is POST, not GET
       data: {
               name: $('#name').val(),
@@ -22,8 +25,9 @@
       success: (data) => {
         console.log('added!')
       }
-    });
-  });
+    })
+  })
+});
 </script>
 </head>
 
