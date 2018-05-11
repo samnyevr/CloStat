@@ -108,12 +108,17 @@ function displayWeather(condition) {
     if(condition=="Rain") {
         return '<img src="images/rain.png">';
     } else if(condition=="Cloud") {
-        // Show cloudy png
+        return '<img src="images/clouds.png">';
+    } else if(condition=="Snow") {
+        return '<img src="images/snow.png">';
+    } else {
+        return '<img src="images/sun.png">';
     }
-    return "";
+    return '<img src="images/sun.png">';
 }
 
 const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
+const toCalvin = (kelvin) => { return kelvin - 273.15 }
 
 const toCardinal = (degree) => {
     if(degree > 360) degree -= 360;
