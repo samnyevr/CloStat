@@ -81,16 +81,16 @@ app.get('/items', (req, res) => {
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
-app.post('/new', (req, res) => {
+app.post('/add', (req, res) => {
   console.log(req.body);
 
   db.run(
-    'INSERT INTO items VALUES  ($name,"top", $numberUsage, $status)',
+    'INSERT INTO items (type,status,tempereture,name,lastUsed,numberUsage) VALUES  ($type,"clean",$temperature,$name,NULL,0)',
     // parameters to SQL query:
     {
       $name: req.body.name,
-      $numberUsage: req.body.numberUsage,
-      $status: req.body.status,
+      $type: req.body.type,
+      $temperature: req.body.temperature,
     },
     // callback function to run when the query finishes:
     (err) => {

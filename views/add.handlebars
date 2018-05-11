@@ -11,21 +11,28 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
-	$('#confirm').click(() => {
-    $.ajax({
-      // all URLs are relative to http://localhost:3000/
-      url: 'new',
-      type: 'POST', // <-- this is POST, not GET
-      data: {
-              name: $('#name').val(),
-              numberUsage: $('#description').val(),
-              status: $('#status').val()
-            },
-      success: (data) => {
-        console.log('added!')
-      }
+    $(document).ready(()=>{
+
+      console.log("add ready");
+    	$('#addButton').click(() => {
+        console.log("POST");
+        $.ajax({
+          // all URLs are relative to http://localhost:3000/
+          url: 'add',
+          type: 'POST', // <-- this is POST, not GET
+          data: {
+                  name: $('#name').val(),
+                  type: $('#type').val(),
+                  temperature: $('#temperature').val(),
+                  photo: $('#photo').val()
+                },
+          success: (data) => {
+            console.log(data);
+            console.log('added!');
+          }
+        });
+      });
     });
-  });
 </script>
 </head>
 
@@ -34,24 +41,34 @@
 		<h1>ClothStat</h1>
     <h3>Add Clothes</h3>
     <div class="form-group">
+      <div>
+      <label for="description">Type </label>
+      <select id="type" name="type">
+        <option value="top">Top</option>
+        <option value="bottom">Bottom</option>
+        <option value="accessory">Accessory</option>
+      </select>
+    </div>
+    <br>
+
       <label for="name">Name: </label>
       <input type="text" class="form-control" id="name" placeholder="Name" name="name">
 		</div>
 		<br>
 
-    <div>
-      <label for="description">Numer of Usage </label>
-      <input type="text" class="form-control" id="description" placeholder="Description" name="description">
-    </div>
-		<br>
+    
 
 		<div>
-      <label for="status">Clean/Dirty: </label>
-      <input type="text" class="form-control" id="status" placeholder="Status" name="status">
+      <label for="status">Temperature: </label>
+      <select id="temperature" name="temperature">
+        <option value="hot">Hot</option>
+        <option value="warm">Warm</option>
+        <option value="cold">Cold</option>
+      </select>
     </div>
 		<br>
 
-		<a id="confirm" href="/closet"><button type="button">Add!</button></a>
+		<button id="addButton" type="button">Add!</button>
 	</div>
 	<div class="icon-bar">
 		<a href="/closet"><i class="fas fa-bath"></i></a>

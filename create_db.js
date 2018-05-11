@@ -9,9 +9,9 @@ const db = new sqlite3.Database('closet.db');
 */
 
 db.serialize(() =>{
-  db.run("CREATE TABLE items (id INT PRIMARY KEY,type TEXT ,status TEXT, tempereture TEXT, name TEXT, lastUsed TEXT, numberUsage INT)");
-  db.run("CREATE TABLE users(id INT PRIMARY KEY, password TEXT,email TEXT, name TEXT, location TEXT)");
-  db.run("CREATE TABLE combinations(id INT PRIMARY KEY, top INT, bottom INT accessories INT)");
+  db.run("CREATE TABLE items (id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT ,status TEXT, tempereture TEXT, name TEXT, lastUsed TEXT, numberUsage INT)");
+  db.run("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, password TEXT,email TEXT, name TEXT, location TEXT)");
+  db.run("CREATE TABLE combinations(id INTEGER PRIMARY KEY AUTOINCREMENT, top INT, bottom INT accessories INT)");
 
   db.run("INSERT INTO items VALUES ('1','top','clean',NULL,'Blue shirt',NULL,7)");
   db.run("INSERT INTO items VALUES ('2','top','clean',NULL,'Pink Shirt',NULL,5)");
