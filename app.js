@@ -7,6 +7,7 @@ const http = require('http');
 const path = require('path');
 const handlebars = require('express3-handlebars')
 
+const login = require('./routes/login');
 const index = require('./routes/index');
 const closet = require('./routes/closet');
 const stat = require('./routes/stat');
@@ -48,25 +49,22 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('closet.db');
 
 app.get('/tops', (req, res) => {
-  db.all('SELECT * FROM tops', (err,rows) => {
-
+  db.all('SELECT * FROM items WHERE type = "top"', (err,rows) => {
   	const allTops = rows;
   	res.send(allTops);
   });
-  //console.log('allItems is:', allItems);
-  //res.send(allItems);
+ 
 });
 
 app.get('/bottoms', (req, res) => {
-  db.all('SELECT * FROM bottoms', (err,rows) => {
-
+  db.all('SELECT * FROM items WHERE type = "bottom"', (err,rows) => {
   	const allBottoms = rows;
   	res.send(allBottoms);
   });
 });
 
 app.get('/accessories', (req, res) => {
-  db.all('SELECT * FROM accessories', (err,rows) => {
+  db.all('SELECT * FROM items WHERE type = "accessory" ', (err,rows) => {
   	const allAccessories = rows;
   	res.send(allAccessories);
   });
@@ -74,7 +72,7 @@ app.get('/accessories', (req, res) => {
 
 app.get('/items', (req, res) => {
 
-	  db.all('SELECT * FROM tops UNION  SELECT * FROM bottoms UNION  SELECT id,NULL as status, NULL as temperature,name,lastUsed,numberUsage FROM accessories', (err,rows) => {
+	  db.all('SELECT * FROM items', (err,rows) => {
 	  	const allItems = rows;
 	  	res.send(allItems);
 	  });
@@ -87,7 +85,7 @@ app.post('/tops', (req, res) => {
   console.log(req.body);
 
   db.run(
-    'INSERT INTO tops VALUES  ($name, $numberUsage, $status)',
+    'INSERT INTO items VALUES  ($name,"top", $numberUsage, $status)',
     // parameters to SQL query:
     {
       $name: req.body.name,
@@ -108,7 +106,8 @@ app.post('/tops', (req, res) => {
 
 
 
-app.get('/', index.view);
+app.get('/', login.view);
+app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
 app.get('/suggestion', suggestion.view);

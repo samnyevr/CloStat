@@ -1,16 +1,25 @@
 function getLocation() {
+    const key = '1ca070dac85dc040481cc24e1eecb4bb';
+    const request = new XMLHttpRequest();
+
     if(navigator.geolocation) {
+        console.log('Got permission!');
         // navigator.geolocation.getCurrentPosition(showPosition, posError, {timeout: 10000});
         navigator.geolocation.getCurrentPosition(function(position) {
-            console.log('position: ', position.coords.latitude, position.coords.longitude);
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${key}`;
+
+            console.log(`The url is ${url}`);
+            getWeatherInfo(request, url);
         }, showError, {timeout: 10000});
-        return true;
     } else {
-        // Do other things if rejected by user
-        console.log('rejected!');
-        return false;
+        console.log('No permission!');
+        const city = 'San%20Diego';
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
+
+        console.log('No permission! Default city: ', city);
+        getWeatherInfo(request, url);
     }
 }
 
@@ -36,10 +45,11 @@ function showError(error) {
   }
 
 $(document).ready(function() {
-    const locPermission = getLocation();
+    getLocation();
 
-    // getWeatherInfo(locPermission);
+    //getWeatherInfo(locPermission);
 
+    /*
     const city = 'San%20Diego';
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
 
@@ -58,71 +68,49 @@ $(document).ready(function() {
 
     getElements = function(response) {
         const temp = Math.round(toFahrenheit(response.main.temp));
+        const condArr = response.weather[0];
+        const windSpeed = response.wind.speed;
+        const windCar = toCardinal(response.wind.deg);
+        const condition = condArr.main;
+        $('.weather').text(`${temp}°F`)
+        //$('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
+        // $('.weather p').text(`${windCar} ${windSpeed} mph`)
+        console.log('The current condition is ', condition);
+        $('.weather').append(displayWeather(condition));
+        // console.log('The wind speed is ', windSpeed);
+        // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
+    }*/
+});
+
+function getWeatherInfo(request, url) {
+    request.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.responseText);
+            getElements(response);
+        }
+    }
+
+    request.open("GET", url, true);
+    request.send();
+
+    // Use local storage to store info 
+    getElements = function(response) {
+        const temp = Math.round(toFahrenheit(response.main.temp));
         const condition = response.weather[0];
         const windSpeed = response.wind.speed;
         const windCar = toCardinal(response.wind.deg);
-        $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
-        // $('.weather p').text(`${windCar} ${windSpeed} mph`)
-        // console.log('The current condition is ', condition);
-        // console.log('The wind speed is ', windSpeed);
-        // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
+        $('.weather').text(`${temp}°F`)
+        $('.weather').append(displayWeather(condition));
     }
-});
+}
 
-function getWeatherInfo(permission) {
-    const key = '1ca070dac85dc040481cc24e1eecb4bb';
-    const request = new XMLHttpRequest();
-
-    if(permission) {
-        const url = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
-
-        request.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(this.responseText);
-                getElements(response);
-            }
-        }
-    
-        request.open("GET", url, true);
-        request.send();
-    
-        getElements = function(response) {
-            const temp = Math.round(toFahrenheit(response.main.temp));
-            const condition = response.weather[0];
-            const windSpeed = response.wind.speed;
-            const windCar = toCardinal(response.wind.deg);
-            $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
-            // $('.weather p').text(`${windCar} ${windSpeed} mph`)
-            // console.log('The current condition is ', condition);
-            // console.log('The wind speed is ', windSpeed);
-            // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
-        }        
-    } else {
-        const city = 'San%20Diego';
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
-
-        request.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(this.responseText);
-                getElements(response);
-            }
-        }
-    
-        request.open("GET", url, true);
-        request.send();
-    
-        getElements = function(response) {
-            const temp = Math.round(toFahrenheit(response.main.temp));
-            const condition = response.weather[0];
-            const windSpeed = response.wind.speed;
-            const windCar = toCardinal(response.wind.deg);
-            $('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
-            // $('.weather p').text(`${windCar} ${windSpeed} mph`)
-            // console.log('The current condition is ', condition);
-            // console.log('The wind speed is ', windSpeed);
-            // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
-        }
+function displayWeather(condition) {
+    if(condition=="Rain") {
+        return '<img src="images/rain.png">';
+    } else if(condition=="Cloud") {
+        // Show cloudy png
     }
+    return "";
 }
 
 const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
