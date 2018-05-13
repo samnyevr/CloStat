@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sign Up</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Firebase script -->
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA9qeDEWivwl8pN0OjpKABOS8bOZZHZiOw",
+      authDomain: "clothstat.firebaseapp.com",
+      databaseURL: "https://clothstat.firebaseio.com",
+      projectId: "clothstat",
+      storageBucket: "clothstat.appspot.com",
+      messagingSenderId: "692402704354"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      console.log("Ready to sign up!");
+      const database = firebase.database();
+
+      $('#signup').click(function() {
+        const uname = document.getElementById('usernameinput').value;
+        const pwd = document.getElementById('passwordinput').value;
+        const email = document.getElementById('emailinput').value;
+        const loc = document.getElementById('locationinput').value;
+
+        console.log(`username: ${uname}, password: ${pwd}, email: ${email}, location: ${loc}`);
+        // Insert data into firebase
+        database.ref(`users/${uname}`).set({password: pwd, email: email, location: loc});
+        // database.ref('users/bob').set({password: "abc", email: "ucsd", location: "san diego"});
+      })
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <form action="/signup">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
+      <br>
+      <label for="pwd"><b>Password</b></label>
+      <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
+      <br>
+      <label for="email"><b>Email</b></label>
+      <input type="text" id="emailinput" placeholder="Enter Email" name="email">
+      <br>
+      <label for="loc"><b>Location</b></label>
+      <input type="text" id="locationinput" placeholder="Enter Location" name="loc">
+      <br>
+      <button type="submit" id="signup">Sign Up</button>
+    </form>
+  </div>
+</body>
+
+</html>
