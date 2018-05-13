@@ -28,26 +28,20 @@
       const database = firebase.database();
 
       $('#signup').click(() => {
-        const uname = document.getElementById('usernameinput').value;
-        const pwd = document.getElementById('passwordinput').value;
-        const email = document.getElementById('emailinput').value;
-        const loc = document.getElementById('locationinput').value;
-
-        console.log(`username: ${uname}, password: ${pwd}, email: ${email}, location: ${loc}`);
         // Insert data into firebase
         database.ref(`users/${$('#usernameinput').val()}`).set({
-          password: $('#passwordinput').val(), 
-          email: $('#emailinput').val(), 
+          password: $('#passwordinput').val(),
+          email: $('#emailinput').val(),
           location: $('#locationinput').val()
         });
-      })
+      });
     });
   </script>
 </head>
 
 <body>
   <div class="container">
-    <form action="/signup">
+    <form action="/">
       <label for="uname"><b>Username</b></label>
       <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
       <br>
