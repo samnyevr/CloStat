@@ -79,18 +79,68 @@ app.get('/items', (req, res) => {
 
 });
 
+app.get('/users', (req, res) => {
+
+    db.all('SELECT * FROM users', (err,rows) => {
+      const allItems = rows;
+      res.send(allItems);
+    });
+
+});
+
+app.get('/suggestion', (req, res) => {
+
+    let temp = 'cold'; // need to get the temperature from the API
+
+    switch (temp){
+      case 'hot':
+        db.all('SELECT * FROM items WHERE tempereture = "hot"', (err,rows) => {
+          const suggestion = rows;
+          console.log(err);
+        });
+        res.send(suggestion);
+        break;
+
+      case 'warm':
+        db.all('SELECT * FROM items WHERE tempereture = "warm"', (err,rows) => {
+          const tuggestion = rows;
+          console.log(suggestion);
+        });
+        res.send(suggestion);
+        break
+
+      case 'cold':
+        db.all('SELECT * FROM items WHERE tempereture = "cold"', (err,rows) => {
+          const suggestion = rows;
+          console.log(suggestion);
+        });
+        res.send(suggestion);
+        break;
+
+      default:
+        db.all('SELECT * FROM items', (err,rows) => {
+          const suggestion = rows;
+          console.log(suggestion);
+        });
+        res.send(suggestion);
+
+    }
+
+});
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 app.post('/add', (req, res) => {
   console.log(req.body);
 
   db.run(
-    'INSERT INTO items (type,status,tempereture,name,lastUsed,numberUsage) VALUES  ($type,"clean",$temperature,$name,NULL,0)',
+    'INSERT INTO items (type,status,tempereture,name,lastUsed,numberUsage,photo) VALUES  ($type,"clean",$temperature,$name,NULL,0,$photo)',
     // parameters to SQL query:
     {
       $name: req.body.name,
       $type: req.body.type,
       $temperature: req.body.temperature,
+      $photo: req.body.photo
     },
     // callback function to run when the query finishes:
     (err) => {
