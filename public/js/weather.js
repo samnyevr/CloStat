@@ -44,7 +44,7 @@ function showError(error) {
     }
   }
 
-$(document).ready(function() {
+$(document).ready(() => {
     getLocation();
 
     //getWeatherInfo(locPermission);
