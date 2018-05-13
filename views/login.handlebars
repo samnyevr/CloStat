@@ -23,8 +23,19 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script type="text/javascript">
-    console.log("Sign in ready!");
-    const database = firebase.database();
+    $(document).ready(() => {
+      const database = firebase.database();
+
+      $('#login').click(() => {
+        console.log('login!');
+        database.ref('users/').once('value', (snapshot) => {
+          const data = snapshot.val();
+          console.log('data: ',data);
+        });
+      });
+    });
+
+
   </script>
 </head>
 
@@ -32,10 +43,10 @@
   <div class="container">
     <form action="/">
       <label for="uname"><b>Username</b></label>
-      <input type="text" id="UsernameInput" placeholder="Enter Username" name="uname">
+      <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
       <br>
       <label for="pwd"><b>Password</b></label>
-      <input type="text" id="PasswordInput" placeholder="Enter Password" name="pwd">
+      <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
       <br>
       <button type="submit" id="login">Login</button>
     </form>
