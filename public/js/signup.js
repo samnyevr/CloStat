@@ -7,7 +7,10 @@ $(document).ready(() => {
       database.ref(`users/${$('#usernameinput').val()}`).set({
         password: $('#passwordinput').val(),
         email: $('#emailinput').val(),
-        location: $('#locationinput').val()
+        location: $('#locationinput').val(),
+        top: '',
+        bottom: '',
+        misc: ''
       });
     });
   });
