@@ -82,6 +82,7 @@ $(document).ready(() => {
     }*/
 });
 
+/* Get the weather information from the API through request */
 function getWeatherInfo(request, url) {
     request.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
@@ -93,17 +94,18 @@ function getWeatherInfo(request, url) {
     request.open("GET", url, true);
     request.send();
 
-    // Use local storage to store info 
+    // Get the specific information (temperature, weather condition, wind speed) from API
     getElements = function(response) {
         const temp = Math.round(toFahrenheit(response.main.temp));
         const condition = response.weather[0];
         const windSpeed = response.wind.speed;
-        const windCar = toCardinal(response.wind.deg);
+        const windCard = toCardinal(response.wind.deg);
         $('.weather').text(`${temp}°F`)
         $('.weather').append(displayWeather(condition));
     }
 }
 
+/* Display weather images depending on the weather condition */
 function displayWeather(condition) {
     if(condition=="Rain") {
         return '<img src="images/rain.png">';
@@ -117,9 +119,13 @@ function displayWeather(condition) {
     return '<img src="images/sun.png">';
 }
 
+/* Functions used to convert temperature */
 const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
 const toCalvin = (kelvin) => { return kelvin - 273.15 }
+const fToC = (fahrenheit) => { return (fahrenheit-32)*(5/9) }
+const cToF = (celsius) => { return (celsius*(9/5))+32 }
 
+/* Convert the degree to cardinal directions */
 const toCardinal = (degree) => {
     if(degree > 360) degree -= 360;
 

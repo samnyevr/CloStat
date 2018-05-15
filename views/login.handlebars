@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Firebase script -->
-  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -22,6 +22,7 @@
   </script>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <!--
   <script type="text/javascript">
     $(document).ready(() => {
       const database = firebase.database();
@@ -36,25 +37,27 @@
     });
 
 
-  </script>
+  </script>-->
 </head>
 
 <body>
   <div class="container">
-    <form action="/">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
-      <br>
-      <label for="pwd"><b>Password</b></label>
-      <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
-      <br>
-      <button type="submit" id="login">Login</button>
-    </form>
+    <label for="uname"><b>Username</b></label>
+    <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
+    <br>
+    <label for="pwd"><b>Password</b></label>
+    <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
+    <br>
+
+    <div id="status"></div>
+
+    <button type="submit" id="login">Login</button>
 
     <form action="/signup">
       <button type="submit" id="signup">Sign Up</button>
     </form>
   </div>
+  <script src="js/storage.js"></script>
 </body>
 
 </html>
