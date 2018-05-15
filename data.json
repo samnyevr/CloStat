@@ -1,0 +1,230 @@
+{  
+  "items":[
+    {
+      "id": 1,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Blue shirt",
+      "lastUsed": "",
+      "numberUsage": 7
+    },
+    {
+      "id": 2,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Pink Shirt",
+      "lastUsed": "",
+      "numberUsage": 5
+    },
+    {
+      "id": 3,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Orange Tee",
+      "lastUsed": "",
+      "numberUsage": 3
+    },
+    {
+      "id": 4,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "NASA Tee",
+      "lastUsed": "",
+      "numberUsage": 9
+    },
+    {
+      "id": 5,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "UCSD Sweater",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 6,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Wave Hoodie",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 7,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Pocket Tee",
+      "lastUsed": "",
+      "numberUsage": 4
+    },
+    {
+      "id": 8,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Strip Tee",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 9,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Track Jacket",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 10,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Zip Shirt",
+      "lastUsed": "",
+      "numberUsage": 1
+    },
+    {
+      "id": 11,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Bomber Jacket",
+      "lastUsed": "",
+      "numberUsage": 2
+    },
+    {
+      "id": 12,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Biker Jacket",
+      "lastUsed": "",
+      "numberUsage": 1
+    },
+    {
+      "id": 13,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Zip-Up Shirt",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 14,
+      "type": "top",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Coach Tee",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 15,
+      "type": "bottom",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Light Blue Jeans",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 16,
+      "type": "bottom",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Black Sweatpant",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 17,
+      "type": "bottom",
+      "status": "clean",
+      "tempereture": "",
+      "name": "Corduroy Short",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 18,
+      "type": "bottom",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Baggies Short",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 19,
+      "type": "bottom",
+      "status": "dirty",
+      "tempereture": "",
+      "name": "Beige Pant",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 20,
+      "type": "accessory",
+      "status": """",
+      "tempereture": """",
+      "name": "Gold Watch",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 21,
+      "type": "accessory",
+      "status": """",
+      "tempereture": """",
+      "name": "Silver Necklace",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 22,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "hot",
+      "name": "vsv",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 23,
+      "type": "top",
+      "status": "clean",
+      "tempereture": "warm",
+      "name": "Blue T-Shirt",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 24,
+      "type": "accessory",
+      "status": "clean",
+      "tempereture": "hot",
+      "name": "UCSD Hat",
+      "lastUsed": "",
+      "numberUsage": 0
+    },
+    {
+      "id": 25,
+      "type": "accessory",
+      "status": "clean",
+      "tempereture": "hot",
+      "name": "Ray-Ban Sunglasses",
+      "lastUsed": "",
+      "numberUsage": 0
+    }
+  ],
+  "users":[]
+}

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Login</title>
+	<title>Sign Up</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,39 +25,40 @@
   <!--
   <script type="text/javascript">
     $(document).ready(() => {
+      console.log("Ready to sign up!");
       const database = firebase.database();
 
-      $('#login').click(() => {
-        console.log('login!');
-        database.ref('users/').once('value', (snapshot) => {
-          const data = snapshot.val();
-          console.log('data: ',data);
+      $('#signup').click(() => {
+        // Insert data into firebase
+        database.ref(`users/${$('#usernameinput').val()}`).set({
+          password: $('#passwordinput').val(),
+          email: $('#emailinput').val(),
+          location: $('#locationinput').val()
         });
       });
     });
-
-
   </script>-->
-  <script src="modernizr.min.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
-    <br>
-    <label for="pwd"><b>Password</b></label>
-    <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
-    <br>
-
-    <div id="status"></div>
-
-    <button type="submit" id="login">Login</button>
-
-    <form action="/signup">
+    <form action="/">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" id="usernameinput" placeholder="Enter Username" name="uname" required>
+      <br>
+      <label for="pwd"><b>Password</b></label>
+      <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd" required>
+      <br>
+      <label for="email"><b>Email</b></label>
+      <input type="text" id="emailinput" placeholder="Enter Email" name="email" required>
+      <br>
+      <label for="loc"><b>Location</b></label>
+      <input type="text" id="locationinput" placeholder="Enter Location" name="loc" required>
+      <br>
       <button type="submit" id="signup">Sign Up</button>
     </form>
   </div>
+  <script src="js/signup.js"></script>
 </body>
 
 </html>
