@@ -4,6 +4,26 @@ body {
   margin-bottom: 30px;
 }
 
+*{
+  -webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.collapse.in {
+    display: block;
+}
+
+.collapse {
+    display: none;
+}
+
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 html{
   height: 100%;
   width: 100%;
@@ -40,6 +60,8 @@ html{
     display:inline;
     float: left;
 }
+
+
 
 .weather img{
     width: 50%;
