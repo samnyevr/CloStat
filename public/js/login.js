@@ -10,6 +10,7 @@ $(document).ready(() => {
         const uname = $('#usernameinput').val();
         const psd = $('#passwordinput').val();
 
+        // Check to see if the user enter the right username and password
         if(keys.includes(uname)) {
             if(data[uname].password == psd) {
                 window.location.href = '/index';

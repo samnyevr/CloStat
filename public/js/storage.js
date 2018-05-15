@@ -1,5 +1,7 @@
 $(document).ready(() => {
-
+    if(supports_html5_storage) {
+        
+    }
 });
 
 function supports_html5_storage() {

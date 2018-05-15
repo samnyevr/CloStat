@@ -1,10 +1,11 @@
+let temperature = 0;
+
 function getLocation() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
 
     if(navigator.geolocation) {
         console.log('Got permission!');
-        // navigator.geolocation.getCurrentPosition(showPosition, posError, {timeout: 10000});
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
@@ -14,19 +15,15 @@ function getLocation() {
             getWeatherInfo(request, url);
         }, showError, {timeout: 10000});
     } else {
-        console.log('No permission!');
+        console.log('Geolocation not supported');
         const city = 'San%20Diego';
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
 
-        console.log('No permission! Default city: ', city);
         getWeatherInfo(request, url);
     }
 }
 
-function showPosition(position) {
-    console.log("Current position: " + position);
-}
-
+/* In the case that user deny geolocation or other errors, use default user signup location */
 function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
@@ -42,11 +39,40 @@ function showError(error) {
         console.log("An unknown error occurred.");
         break;
     }
+
+    const database = firebase.database();
+    database.ref('users/Bob').once('value', (snapshot) => {
+        const data = snapshot.val();
+        const key = '1ca070dac85dc040481cc24e1eecb4bb';
+        const request = new XMLHttpRequest();
+        const city = data['location'];
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
+
+        console.log(`The url is ${url}`);
+        getWeatherInfo(request, url);
+    });
   }
 
 $(document).ready(() => {
     getLocation();
 
+    $('.weather').click(() => {
+        // $('.weather').innerHTML = '';
+        if(temperature.includes('°F')) {
+            console.log('Fahrenheit!');
+            const temp = fToC(Number(temperature.substring(0, 2)));
+            temperature = `${temp}°C`;
+            $('.weather').text(`${temp}°C`);
+            console.log("hello");
+        } else {
+            console.log('Celsius!');
+            const temp = cToF(Number(temperature.substring(0, 2)));
+            temperature = `${temp}°F`;
+            $('.weather').text(`${temp}°F`);
+            console.log("hello2");
+        }
+        console.log('The weather ', $('.weather').text);
+    });
     //getWeatherInfo(locPermission);
 
     /*
@@ -100,8 +126,9 @@ function getWeatherInfo(request, url) {
         const condition = response.weather[0];
         const windSpeed = response.wind.speed;
         const windCard = toCardinal(response.wind.deg);
-        $('.weather').text(`${temp}°F`)
+        $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
+        temperature = `${temp}°F`;
     }
 }
 
@@ -122,8 +149,8 @@ function displayWeather(condition) {
 /* Functions used to convert temperature */
 const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
 const toCalvin = (kelvin) => { return kelvin - 273.15 }
-const fToC = (fahrenheit) => { return (fahrenheit-32)*(5/9) }
-const cToF = (celsius) => { return (celsius*(9/5))+32 }
+const fToC = (fahrenheit) => { return Math.round((fahrenheit-32)*(5/9)) }
+const cToF = (celsius) => { return Math.round((celsius*(9/5))+32) }
 
 /* Convert the degree to cardinal directions */
 const toCardinal = (degree) => {
