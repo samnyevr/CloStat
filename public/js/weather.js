@@ -63,15 +63,12 @@ $(document).ready(() => {
             const temp = fToC(Number(temperature.substring(0, 2)));
             temperature = `${temp}°C`;
             $('.weather').text(`${temp}°C`);
-            console.log("hello");
         } else {
             console.log('Celsius!');
             const temp = cToF(Number(temperature.substring(0, 2)));
             temperature = `${temp}°F`;
             $('.weather').text(`${temp}°F`);
-            console.log("hello2");
         }
-        console.log('The weather ', $('.weather').text);
     });
     //getWeatherInfo(locPermission);
 

@@ -46,7 +46,7 @@ function drawChart(part) {
 				vAxis: {viewWindow:{min:0}}
 			}
 
-			let chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 			chart.draw(list, option);
 
 		});
