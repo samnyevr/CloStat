@@ -3,6 +3,7 @@ $(document).ready(() => {
         const database = firebase.database();
         database.ref(`users/`).once('value', (snapshot) => {
             const data = snapshot.val();
+          
         });
     });
 });

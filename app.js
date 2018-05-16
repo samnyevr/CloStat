@@ -54,7 +54,7 @@ app.get('/tops', (req, res) => {
   	const allTops = rows;
   	res.send(allTops);
   });
- 
+
 });
 
 app.get('/bottoms', (req, res) => {
