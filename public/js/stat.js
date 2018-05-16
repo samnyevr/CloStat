@@ -33,4 +33,16 @@ $(document).ready(() =>{
 
 
 	}
+	$('.weatherBar').click(()=>{
+
+			$('.weatherBar').attr('src','/images/weatherActive.png');
+			click=true;
+
+	})
+
+	$('.closetBar').click(()=>{
+			$('.closetBar').attr('src','/images/closetActive.png');
+			click=true;
+
+	})
 });

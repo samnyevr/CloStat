@@ -2,6 +2,8 @@ function myFunction() {
 	document.getElementById("myDropdown").classList.toggle("show");
 }
 
+let click=false;
+
 $(document).ready(() =>{
 	console.log("jQuery on");
  const database = firebase.database();
@@ -102,6 +104,19 @@ $('#DB').click(()=>{
 
          chart.draw(data, options);
        }
+
+})
+
+$('.weatherBar').click(()=>{
+
+		$('.weatherBar').attr('src','/images/weatherActive.png');
+		click=true;
+
+})
+
+$('.statBar').click(()=>{
+		$('.statBar').attr('src','/images/statActive.png');
+		click=true;
 
 })
 

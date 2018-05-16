@@ -1,9 +1,14 @@
 $(document).ready(() => {
     $('#addButton').click(() => {
+
         const database = firebase.database();
         database.ref(`users/`).once('value', (snapshot) => {
             const data = snapshot.val();
-            const name = $('#name').val();
+            let name = $('#name').val();
+            if(!name){
+              name='No Name';
+            }
+
             console.log(name);
             const type =$('#type').val();
             console.log(type);
@@ -13,7 +18,9 @@ $(document).ready(() => {
               numberUsage: 0,
               temp: $('#temperature').val(),
               // photo: $('#photo').val()
+
         });
+
     });
 });
 })
