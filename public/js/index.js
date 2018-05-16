@@ -1,3 +1,8 @@
+window.localStorage.setItem("weather", document.getElementsByClassName("weather").value);
+var temp= window.localStorage.getItem("weather");
+console.log(temp);
+
+
 $(document).ready(() =>{
 	console.log("jQuery On!");
 	$.ajax({
@@ -20,4 +25,7 @@ $(document).ready(() =>{
 			click=true;
 
 	})
+
+
+
 });
