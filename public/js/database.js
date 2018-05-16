@@ -24,27 +24,31 @@
 const database = firebase.database();
 
 function getUserInfo() {
-    let res = database.ref(`users/`).once('value', (snapshot) => {
-        // console.log('snap vals: ', snapshot.val());
-        // res = snapshot.val();
-        // console.log(res);
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
         return snapshot.val();
+    }).then( (key) => {
+        return key;
     });
-    return res;
 }
 
 function getClothes(type) {
-    database.ref(`users/Bob`).once('value', (snapshot) => {
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
         return snapshot.val().Clothes.type;
     });
 }
 
 function getClothesInfo(type, cloth, clothInfo) {
-    database.ref(`users/Bob`).once('value', (snapshot) => {
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
         return snapshot.val().Clothes.type.cloth.clothInfo;
     });
 }
 
 $(document).ready(() => {
-    console.log('func output: ', getUserInfo());
+    // const promise = getUserInfo().then( (key) => {
+    //     console.log(key);
+    // });
+    const val = getUserInfo().then( (key) => {
+        
+    });
+
 });

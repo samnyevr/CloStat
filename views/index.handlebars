@@ -22,7 +22,7 @@
 		storageBucket: "clothstat.appspot.com",
 		messagingSenderId: "692402704354"
 		};
-		firebase.initializeApp(config);
+		firebase.initializeApp(config); 
 	</script>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -38,10 +38,8 @@
 		</div>
 
 		<div class="location">
-			<form>
-				<input type="text" name="location" placeholder="Enter your location"><br><br>
-  			<input type="submit">
-			</form>
+			<input type="text" name="location" placeholder="Enter your location" id="locchangeinput"><br><br>
+			<button type="submit" id="changeLocation">Submit</button>
 		</div>
 
 		<div class="rec">

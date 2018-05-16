@@ -70,6 +70,14 @@ $(document).ready(() => {
             $('.weather').text(`${temp}°F`);
         }
     });
+
+    $('#changeLocation').click(() => {
+        console.log('Change location!');
+        const database = firebase.database();
+        database.ref(`users/Bob`).set({
+            location: $('#locchangeinput').val()
+        });
+    });
     //getWeatherInfo(locPermission);
 
     /*
