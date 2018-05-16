@@ -129,6 +129,7 @@ function getWeatherInfo(request, url) {
         $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
         temperature = `${temp}°F`;
+        window.localStorage.setItem("temp",temp);   // Save data to local storage (no expiration date)
     }
 }
 
