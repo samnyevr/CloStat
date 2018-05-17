@@ -86,6 +86,7 @@ $(document).ready(() => {
             localStorage['temp'] = temp;
             $('.weather').text(`${temp}°F`);
         }
+        $('.weather').append(displayWeather(localStorage['condition']));
     });
 
     $('#changeLocation').click(() => {
@@ -134,6 +135,7 @@ function getWeatherInfo(request, url) {
         // window.localStorage.setItem("temp",temp);
         localStorage['temp'] = temp;
         localStorage['tempUnit'] = 'F';
+        localStorage['condition'] = condition;
     }
 }
 
