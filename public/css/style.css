@@ -1,53 +1,19 @@
-body {
-  color: #fff;
-  height: 100%;
-  margin-bottom: 30px;
-}
-
+/* General Usuage */
 *{
-  -webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
-box-sizing: border-box;
-}
-
-.collapse.in {
-    display: block;
-}
-
-.collapse {
-    display: none;
-}
-
-:after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 html{
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
-.panel-heading {
-    color: #333;
-    background-color: #c77114c7 !important;
-  }
-
-.list{
-  text-align: left;
-  margin-left: 60%;
-  margin-top: 5%;
-}
-
-#piechart{
-  position: absolute;
-  width:15%;
-  top: 28%;
-  left: 10px;
-  height: 50%;
-
-
+body {
+    color: #fff;
+    height: 100%;
+    margin-bottom: 30px;
 }
 
 .container{
@@ -59,105 +25,13 @@ html{
     background: white;
 }
 
-.weather{
-    width: 50%;
-    font-size: 25px;
-    color: black;
-    display:inline;
-    float: left;
-}
+/*************************************************************************/
 
+/* Top & Bottom */
 
-
-.weather img{
-    width: 50%;
-    max-height: 15vh;
-}
-
-#clr{
-  clear:both;
-}
-
-#clrright{
-  clear:right;
-}
-
-.rec img{
-  width:50%;
-  max-height: 10vh;
-  border-radius: 50%;
-  border: 5px solid black;
-  float: right;
-  display: none;
-}
-
-.top img{
-    width: 50%;
-    max-height: 25vh;
-    border-radius: 50%;
-    border: 5px solid black;
-}
-
-.bottom img{
-    width: 50%;
-    max-height: 25vh;
-    border-radius: 50%;
-    border: 5px solid black;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-li img{
-  width:33.3%;
-}
-
-li {
-    float: left;
-    width:33.3%;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 0;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #fff;
-}
-
-.icon-bar {
-    width: 100%;
-    background-color: #fff;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-}
-
-.icon-bar a {
-    float: left;
-    width: 33.3%;
-    display: block;
-    text-align: center;
-    padding: 11px ;
-    transition: all 0.2s ease;
-    color: white;
-    font-size: 30px;
-}
-
-.icon-bar a:hover {
-    background-color: #ffffff;
-}
-
-.active {
-    background-color: #5bc5ff !important;
+.panel-heading {
+    color: #333;
+    background-color: #c77114c7 !important;
 }
 
 .words{
@@ -221,7 +95,22 @@ li a:hover {
   opacity: 1;
 }
 
+/*************************************************************************/
 
+/* Closet */
+.list{
+    text-align: left;
+    margin-left: 60%;
+    margin-top: 5%;
+}
+
+#piechart{
+  position: absolute;
+  width:15%;
+  top: 28%;
+  left: 10px;
+  height: 50%;
+}
 .dropbtn {
     background-color: white;
     color: white;
@@ -230,12 +119,6 @@ li a:hover {
     border: none;
     cursor: pointer;
 }
-
-/* Dropdown button on hover & focus
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #;
-}
-*/
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -266,3 +149,86 @@ li a:hover {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+/*************************************************************************/
+
+
+/* Index */
+.weather{
+    width: 50%;
+    font-size: 25px;
+    color: black;
+    display:inline;
+    float: left;
+}
+
+.weather img{
+    width: 50%;
+    max-height: 15vh;
+}
+
+.rec img{
+  width:50%;
+  max-height: 10vh;
+  border-radius: 50%;
+  border: 5px solid black;
+  float: right;
+  display: none;
+}
+
+.top img{
+    width: 50%;
+    max-height: 25vh;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+
+.bottom img{
+    width: 50%;
+    max-height: 25vh;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+/*************************************************************************/
+
+
+/* Utility */
+#clr{
+  clear:both;
+}
+
+#clrright{
+  clear:right;
+}
+
+/*************************************************************************/
+
+/* Navigation Bar */
+.icon-bar {
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+}
+
+.icon-bar a {
+    float: left;
+    width: 33.3%;
+    display: block;
+    text-align: center;
+    padding: 11px ;
+    transition: all 0.2s ease;
+    color: white;
+    font-size: 30px;
+}
+
+.icon-bar a:hover {
+    background-color: #ffffff;
+}
+
+.active {
+    background-color: #5bc5ff !important;
+}
+
+/*************************************************************************/
