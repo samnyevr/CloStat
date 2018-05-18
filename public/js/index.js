@@ -1,5 +1,7 @@
-window.localStorage.setItem("weather", document.getElementsByClassName("weather").value);
-var temp= window.localStorage.getItem("weather");
+// window.localStorage.setItem("weather", document.getElementsByClassName("weather").value);
+// var temp= window.localStorage.getItem("weather");
+localStorage['weather'] = document.getElementsByClassName('weather').value;
+var temp = localStorage['weather'];
 console.log(temp);
 
 

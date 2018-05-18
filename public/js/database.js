@@ -1,50 +1,65 @@
-// Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyA9qeDEWivwl8pN0OjpKABOS8bOZZHZiOw",
-//     authDomain: "clothstat.firebaseapp.com",
-//     databaseURL: "https://clothstat.firebaseio.com",
-//     projectId: "clothstat",
-//     storageBucket: "clothstat.appspot.com",
-//     messagingSenderId: "692402704354"
-// };
-// firebase.initializeApp(config);
+/*
+ * Filename: database.js
+ * Description: A list of functions that allow users to access specific
+ * information from firebase.
+ * Note: in order to get the desired values, need to call the function like
+ * the following: func().then(key => { // Do something }), where key is the values
+ * the user wants. If user did not call then and access the key, they will
+ * only have the value of the promise.
+ */
 
-// $(document).ready(() => {
-//     const database = firebase.database();
-    
-//     database.ref('users/').once('value', (snapshot) => {
-//         const data = snapshot.val();
-//         const keys = Object.keys(data);
-
-//         for(const key of keys) {
-//             console.log('keys: ', key);
-//         }
-//     });
-// });
 const database = firebase.database();
 
+/*
+ * Function Name: getUserInfo()
+ * Description: Get the user's information (password, email, clothes object, 
+ * and location).
+ * Parameters: None
+ * Error: User have no info (no check implemented yet)
+ * return value: key-value pairs for password, email, clothes object, and location.
+ */
 function getUserInfo() {
-    let res = database.ref(`users/`).once('value', (snapshot) => {
-        // console.log('snap vals: ', snapshot.val());
-        // res = snapshot.val();
-        // console.log(res);
-        return snapshot.val();
-    });
-    return res;
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
+        // return snapshot.val();
+    });/*.then( (key) => {
+        return key;
+    });*/
 }
 
+/*
+ * Function Name: getClothes()
+ * Description: Get the clothes objects depending on which type user
+ * wants
+ * Parameters: type - the type of clothes (top, bottom, accessories)
+ * Side Effects: None
+ * Error: invalid input (no check implemented yet)
+ * return value: list of clothing items the user requested
+ */
 function getClothes(type) {
-    database.ref(`users/Bob`).once('value', (snapshot) => {
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
         return snapshot.val().Clothes.type;
     });
 }
 
-function getClothesInfo(type, cloth, clothInfo) {
-    database.ref(`users/Bob`).once('value', (snapshot) => {
-        return snapshot.val().Clothes.type.cloth.clothInfo;
+/*
+ * Function Name: getClothesInfo()
+ * Description: Get the information of the specific cloth
+ * Parameters: type - the type of clothes (top, bottom, accessories)
+ *             cloth - the name of the cloth item
+ *             attribute - the attribute of the clothing item (clean: bool, 
+ *             numberUsage: int, temp: string)
+ * Side Effects: None
+ * Error: Invalid no input (no check implemented yet)
+ * return value: the value of the clothing attribute
+ */
+function getClothesInfo(type, cloth, attribute) {
+    return database.ref(`users/Bob`).once('value').then((snapshot) => {
+        return snapshot.val().Clothes.type.cloth.attribute;
     });
 }
 
 $(document).ready(() => {
-    console.log('func output: ', getUserInfo());
+    // const val = getUserInfo().then( (key) => {
+    //     console.log(key);
+    // });
 });

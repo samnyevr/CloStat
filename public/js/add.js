@@ -21,6 +21,8 @@ $(document).ready(() => {
 
         });
 
+            window.location.href = "/closet";
     });
+
 });
-})
+});

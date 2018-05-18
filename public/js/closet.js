@@ -97,7 +97,7 @@ $('#DB').click(()=>{
 
          var options = {
            legend:'none',
-
+					 backgroundColor: { fill:'transparent' }
          };
 
          var chart = new google.visualization.PieChart(document.getElementById('piechart'));

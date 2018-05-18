@@ -1,6 +1,13 @@
-let temperature = 0;
-
-function getLocation() {
+/*
+ * Function Name: getLocAndShowTemp()
+ * Description: Get the user's location and display the temperature. If user 
+ * denied the permission, then use the user's default location.
+ * Parameters: None
+ * Error: Denied geolocation, geolocation not supported, geolocation timeout,
+ * unknown error
+ * return value: None 
+ */
+function getLocAndShowTemp() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
 
@@ -23,7 +30,14 @@ function getLocation() {
     }
 }
 
-/* In the case that user deny geolocation or other errors, use default user signup location */
+/*
+ * Function Name: showError()
+ * Description: Print the corresponding error in console, then use the user's
+ * default location to get the weather information
+ * Parameters: error - the error code of geolocation
+ * Error: None
+ * return value: None
+ */
 function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
@@ -54,69 +68,56 @@ function showError(error) {
   }
 
 $(document).ready(() => {
-    getLocation();
+    getLocAndShowTemp();
 
     $('.weather').click(() => {
         // $('.weather').innerHTML = '';
-        if(temperature.includes('°F')) {
-            console.log('Fahrenheit!');
-            const temp = fToC(Number(temperature.substring(0, 2)));
-            temperature = `${temp}°C`;
+        if(localStorage['tempUnit'] == 'F') {
+            const temp = fToC(Number(localStorage['temp']));
+            // temperature = `${temp}°C`;
+            localStorage['tempUnit'] = 'C';
+            localStorage['temp'] = temp;
             $('.weather').text(`${temp}°C`);
-            console.log("hello");
         } else {
-            console.log('Celsius!');
-            const temp = cToF(Number(temperature.substring(0, 2)));
-            temperature = `${temp}°F`;
+            const temp = cToF(Number(localStorage['temp']));
+            // temperature = `${temp}°F`;
+            localStorage['tempUnit'] = 'F';
+            localStorage['temp'] = temp;
             $('.weather').text(`${temp}°F`);
-            console.log("hello2");
         }
-        console.log('The weather ', $('.weather').text);
+        $('.weather').append(displayWeather(localStorage['condition']));
     });
-    //getWeatherInfo(locPermission);
 
-    /*
-    const city = 'San%20Diego';
-    const key = '1ca070dac85dc040481cc24e1eecb4bb';
-
-    const request = new XMLHttpRequest();
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
-
-    request.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(this.responseText);
-            getElements(response);
-        }
-    }
-
-    request.open("GET", url, true);
-    request.send();
-
-    getElements = function(response) {
-        const temp = Math.round(toFahrenheit(response.main.temp));
-        const condArr = response.weather[0];
-        const windSpeed = response.wind.speed;
-        const windCar = toCardinal(response.wind.deg);
-        const condition = condArr.main;
-        $('.weather').text(`${temp}°F`)
-        //$('.weather').text(`${temp}°F ${windCar} ${windSpeed} mph`);
-        // $('.weather p').text(`${windCar} ${windSpeed} mph`)
-        console.log('The current condition is ', condition);
-        $('.weather').append(displayWeather(condition));
-        // console.log('The wind speed is ', windSpeed);
-        // console.log('The cardinal direction is ', response.wind.deg, ' ', windCar);
-    }*/
+    $('#changeLocation').click(() => {
+        console.log('Change location!');
+        const database = firebase.database();
+        database.ref(`users/Bob`).update({
+            location: $('#locchangeinput').val()
+        });
+    });
 });
 
-/* Get the weather information from the API through request */
+/*
+ * Function Name: getWeatherInfo()
+ * Description: Get the weather information using url and request and display
+ * it on the HTML.
+ * Parameters: request - the XMLHTTPRequest
+ *             url - the url to retrieve the data
+ * Error: timeout 
+ * return value: None
+ */
 function getWeatherInfo(request, url) {
     request.onreadystatechange = function() {
+        // Wait until the request is good
         if(this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(this.responseText);
+            // Call back function for when the request return the information
+            // from the API server
             getElements(response);
         }
     }
 
+    // Send the url request to get the information from the API
     request.open("GET", url, true);
     request.send();
 
@@ -129,11 +130,22 @@ function getWeatherInfo(request, url) {
         $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
         temperature = `${temp}°F`;
-        window.localStorage.setItem("temp",temp);   // Save data to local storage (no expiration date)
+        // Save data to local storage (no expiration date)
+        // window.localStorage.setItem("temp",temp);
+        localStorage['temp'] = temp;
+        localStorage['tempUnit'] = 'F';
+        localStorage['condition'] = condition;
     }
 }
 
-/* Display weather images depending on the weather condition */
+/*
+ * Function Name: displayWeather()
+ * Description: Display the corresponding weather icon depending on the
+ * weather condition.
+ * Parameters: condition - the weather condition (cloudy, sunny, etc.)
+ * Error: None
+ * return value: the image source of the corresponding weather 
+ */
 function displayWeather(condition) {
     if(condition=="Rain") {
         return '<img src="images/rain.png">';
