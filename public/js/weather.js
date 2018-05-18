@@ -68,7 +68,6 @@ function showError(error) {
   }
 
 $(document).ready(() => {
-    console.log('local storage: ',localStorage['temp']);
     getLocAndShowTemp();
 
     $('.weather').click(() => {

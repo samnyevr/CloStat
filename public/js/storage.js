@@ -1,9 +1,4 @@
-$(document).ready(() => {
-    if(supports_html5_storage) {
-        
-    }
-});
-
+// Check to see if browser supports html5 storage
 function supports_html5_storage() {
     try {
       return 'localStorage' in window && window['localStorage'] !== null;
