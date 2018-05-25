@@ -9,6 +9,7 @@
  */
 
 const database = firebase.database();
+const user = localStorage['loggedInUser'];
 
 /*
  * Function Name: getUserInfo()
@@ -19,7 +20,7 @@ const database = firebase.database();
  * return value: key-value pairs for password, email, clothes object, and location.
  */
 function getUserInfo() {
-    return database.ref(`users/Bob`).once('value').then((snapshot) => {
+    return database.ref(`users/${user}`).once('value').then((snapshot) => {
             return snapshot.val();
     });/*.then( (key) => {
         return key;
@@ -36,7 +37,7 @@ function getUserInfo() {
  * return value: list of clothing items the user requested
  */
 function getClothes(type) {
-    return database.ref(`users/Bob`).once('value').then((snapshot) => {
+    return database.ref(`users/${user}`).once('value').then((snapshot) => {
         return snapshot.val().Clothes.type;
     });
 }
@@ -53,7 +54,7 @@ function getClothes(type) {
  * return value: the value of the clothing attribute
  */
 function getClothesInfo(type, cloth, attribute) {
-    return database.ref(`users/Bob`).once('value').then((snapshot) => {
+    return database.ref(`users/${user}`).once('value').then((snapshot) => {
         return snapshot.val().Clothes.type.cloth.attribute;
     });
 }

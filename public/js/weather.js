@@ -55,7 +55,8 @@ function showError(error) {
     }
 
     const database = firebase.database();
-    database.ref('users/Bob').once('value', (snapshot) => {
+    const user = localStorage['loggedInUser'];
+    database.ref(`users/${user}`).once('value', (snapshot) => {
         const data = snapshot.val();
         const key = '1ca070dac85dc040481cc24e1eecb4bb';
         const request = new XMLHttpRequest();
@@ -91,7 +92,8 @@ $(document).ready(() => {
     $('#changeLocation').click(() => {
         console.log('Change location!');
         const database = firebase.database();
-        database.ref(`users/Bob`).update({
+        const user = localStorage['loggedInUser'];
+        database.ref(`users/${user}`).update({
             location: $('#locchangeinput').val()
         });
     });
@@ -129,7 +131,7 @@ function getWeatherInfo(request, url) {
         const windCard = toCardinal(response.wind.deg);
         $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
-        temperature = `${temp}°F`;
+        // temperature = `${temp}°F`;
         // Save data to local storage (no expiration date)
         // window.localStorage.setItem("temp",temp);
         localStorage['temp'] = temp;
@@ -162,7 +164,7 @@ function displayWeather(condition) {
 /* Functions used to convert temperature */
 const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
 const toCalvin = (kelvin) => { return kelvin - 273.15 }
-const fToC = (fahrenheit) => { return Math.round((fahrenheit-32)*(5/9)) }
+const fToC = (fahrenheit) => { return ((fahrenheit-32)*(5/9)).toFixed(1) }
 const cToF = (celsius) => { return Math.round((celsius*(9/5))+32) }
 
 /* Convert the degree to cardinal directions */
