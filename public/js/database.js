@@ -20,7 +20,7 @@ const database = firebase.database();
  */
 function getUserInfo() {
     return database.ref(`users/Bob`).once('value').then((snapshot) => {
-        // return snapshot.val();
+            return snapshot.val();
     });/*.then( (key) => {
         return key;
     });*/
@@ -62,4 +62,5 @@ $(document).ready(() => {
     // const val = getUserInfo().then( (key) => {
     //     console.log(key);
     // });
+    console.log(getUserInfo());
 });
