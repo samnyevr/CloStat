@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-
-body {
-  color: #fff;
-  height: 100%;
-  margin-bottom: 30px;
-}
-
-=======
 /* General Usuage */
->>>>>>> 3959a428ca6a82917afa526f2f26ed0d3cc0e175
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -116,10 +106,10 @@ body {
 
 #piechart{
   position: absolute;
-  width:15%;
-  top: 28%;
-  left: 10px;
-  height: 50%;
+  width:350px;
+  top: 40%;
+  left: -60px;
+  height: 200px;
 }
 .dropbtn {
     background-color: white;
@@ -128,6 +118,12 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+.addIcon{
+  font-size:24px;
+  padding-left:80%;
+  color:black
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -216,7 +212,7 @@ body {
 /* Navigation Bar */
 .icon-bar {
     width: 100%;
-    background-color: #fff;
+    background-color:transparent;
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -229,7 +225,7 @@ body {
     text-align: center;
     padding: 11px ;
     transition: all 0.2s ease;
-    color: white;
+    color:transparent;
     font-size: 30px;
 }
 
