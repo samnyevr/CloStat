@@ -19,6 +19,10 @@ const washing = require('./routes/washing');
 const add = require('./routes/add');
 const test = require('./routes/test');
 
+ let temp;
+ const HOT = 80;
+ const COLD = 61;
+
 // Example route
 // var user = require('./routes/user');
 

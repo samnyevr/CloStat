@@ -7,7 +7,7 @@
  * unknown error
  * return value: None 
  */
-function getLocAndShowTemp() {
+ function getLocAndShowTemp() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
 
@@ -38,21 +38,21 @@ function getLocAndShowTemp() {
  * Error: None
  * return value: None
  */
-function showError(error) {
+ function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
-        console.log("User denied the request for Geolocation.");
-        break;
+      console.log("User denied the request for Geolocation.");
+      break;
       case error.POSITION_UNAVAILABLE:
-        console.log("Location information is unavailable.");
-        break;
+      console.log("Location information is unavailable.");
+      break;
       case error.TIMEOUT:
-        console.log("The request to get user location timed out.");
-        break;
+      console.log("The request to get user location timed out.");
+      break;
       case error.UNKNOWN_ERROR:
-        console.log("An unknown error occurred.");
-        break;
-    }
+      console.log("An unknown error occurred.");
+      break;
+  }
 
     const database = firebase.database();
     const user = localStorage['loggedInUser'];
@@ -63,10 +63,10 @@ function showError(error) {
         const city = data['location'];
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
 
-        console.log(`The url is ${url}`);
-        getWeatherInfo(request, url);
-    });
-  }
+    console.log(`The url is ${url}`);
+    getWeatherInfo(request, url);
+});
+}
 
 $(document).ready(() => {
     getLocAndShowTemp();
@@ -100,15 +100,16 @@ $(document).ready(() => {
 });
 
 /*
- * Function Name: getWeatherInfo()
- * Description: Get the weather information using url and request and display
- * it on the HTML.
- * Parameters: request - the XMLHTTPRequest
- *             url - the url to retrieve the data
- * Error: timeout 
- * return value: None
- */
+* Function Name: getWeatherInfo()
+* Description: Get the weather information using url and request and display
+* it on the HTML.
+* Parameters: request - the XMLHTTPRequest
+*             url - the url to retrieve the data
+* Error: timeout 
+* return value: None
+*/
 function getWeatherInfo(request, url) {
+    const database = firebase.database();
     request.onreadystatechange = function() {
         // Wait until the request is good
         if(this.readyState == 4 && this.status == 200) {
@@ -131,14 +132,82 @@ function getWeatherInfo(request, url) {
         const windCard = toCardinal(response.wind.deg);
         $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
-        // temperature = `${temp}°F`;
         // Save data to local storage (no expiration date)
-        // window.localStorage.setItem("temp",temp);
         localStorage['temp'] = temp;
         localStorage['tempUnit'] = 'F';
         localStorage['condition'] = condition;
+        const COLD = 61;
+        const HOT = 80;
+
+        database.ref('users/Bob').once('value', (snapshot) => {
+            const data = snapshot.val();
+            const top = data.Clothes.Top;
+            const bottom = data.Clothes.Bottom;
+            const arrayT = Object.values(top);
+            const arrayB = Object.values(bottom);
+            console.log(top);
+            
+
+            let tempName;
+            if(temp<COLD){
+                tempName = 'cold';
+
+            }else if(temp>= COLD && temp <= HOT){
+                tempName = 'warm';
+                
+            }else if (temp > HOT){
+                tempName = 'hot';
+                
+            }else{
+                tempName = 'default';
+                
+            }
+
+            if(tempName == 'default'){
+
+            }else{
+                const suggestionT = new Array();
+                const suggestionB = new Array();
+                for(const item of arrayT){
+                    if(item.temp == tempName){
+                        suggestionT.push(item)
+                    }
+                }
+                for(const item of arrayB){
+                    if(item.temp == tempName){
+                        suggestionB.push(item)
+                    }
+                }
+                for(const item of suggestionT){
+                    $('.top').append(item.name)
+                }
+                for(const item of suggestionB){
+                    $('.bottom').append(item.name)
+                } 
+
+            }
+            
+
+        });
+
+        
+        // Save data to local storage (no expiration date)
+        // window.localStorage.setItem("temp",temp);
+        
+
+        
+    }
+
+    function suggestMe(e){
+        if(e.type == 'top'){
+            $('.top').append(e.name);
+        }
+        else if(e.type == 'bottom'){
+            $('.bottom').append(e.name);
+        }
     }
 }
+
 
 /*
  * Function Name: displayWeather()
@@ -148,7 +217,7 @@ function getWeatherInfo(request, url) {
  * Error: None
  * return value: the image source of the corresponding weather 
  */
-function displayWeather(condition) {
+ function displayWeather(condition) {
     if(condition=="Rain") {
         return '<img src="images/rain.png">';
     } else if(condition=="Cloud") {

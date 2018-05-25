@@ -110,7 +110,6 @@ $(document).ready(() =>{
 	});
 });
 
-
 $('.weatherBar').click(()=>{
 
 	$('.weatherBar').attr('src','/images/weatherActive.png');
