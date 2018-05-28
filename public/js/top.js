@@ -5,12 +5,20 @@ $(document).ready(() =>{
 
   database.ref('users/').once('value', (snapshot) => {
     const data = snapshot.val();
-
-    const bottomKey = Object.keys(data['Bob'].Clothes.Top);
+    const user = localStorage['loggedInUser'];
+    const top = data[user].Clothes.Top;
+    const topKey = Object.keys(data[user].Clothes.Top);
+    var cleanArray = [];
+    for(const key of topKey) {
+      if (top[key].clean) {
+       cleanArray.push(key);
+      }
+    }
+    console.log(cleanArray);
 
     let number=1;
-    for(const clothes of bottomKey) {
-
+    for(const clothes of cleanArray) {
+      let usageNumber=data[user].Clothes.Top[`${clothes}`].numberUsage
       $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading"><p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p>
 
       </div>
@@ -20,7 +28,7 @@ $(document).ready(() =>{
     				<label for="checkbox${number}"> </label>
               </div>
 
-      <div id="collapse${number}" class="panel-collapse collapse in"> <div class="panel-body"> <img class="pic" width="120" src="/images/blueShirt.jpg"><p class="words">You have worn this shirt 3 times this month. </p></div></div></div>`);
+      <div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body"> <img class="pic" width="120" src="/images/blueShirt.jpg"><p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
       number=number+1;
 
     }
@@ -75,7 +83,6 @@ $(document).ready(() =>{
 
 	/* check if there is selected checkboxes, by default the length is 1 as it contains one single comma */
 	if(selected.length > 0){
-		alert("You have selected " + selected);
 	}else{
 		alert("Please at least check one of the checkbox");
 
