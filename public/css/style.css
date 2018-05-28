@@ -51,8 +51,8 @@ body {
 }
 
 
-.round {
-  position: relative;
+.round{
+  position:relative;
   height: 0;
 }
 
@@ -62,9 +62,9 @@ body {
   border-radius: 50%;
   cursor: pointer;
   height: 28px;
-  left: 320px;
+  left: 340px;
   position: absolute;
-  top: -30px;
+  top: -37px;
   width: 28px;
 }
 
@@ -87,8 +87,8 @@ body {
 }
 
 .round input[type="checkbox"]:checked + label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
+  background-color: #ffce71;
+  border-color: #ffce71;
 }
 
 .round input[type="checkbox"]:checked + label:after {
