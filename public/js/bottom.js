@@ -1,5 +1,6 @@
 $(document).ready(() =>{
   const database = firebase.database();
+  const user = localStorage['loggedInUser'];
   console.log("hello");
 
   database.ref('users/').once('value', (snapshot) => {
@@ -23,9 +24,5 @@ $(document).ready(() =>{
       number=number+1;
 
     }
-
-
-
-
-});
+  });
 });

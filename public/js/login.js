@@ -13,6 +13,7 @@ $(document).ready(() => {
         // Check to see if the user enter the right username and password
         if(keys.includes(uname)) {
             if(data[uname].password == psd) {
+                localStorage['loggedInUser'] = uname;
                 window.location.href = '/index';
             } else {
                 $('#status').html('');
