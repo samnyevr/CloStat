@@ -3,6 +3,18 @@ $(document).ready(() =>{
   const user = localStorage['loggedInUser'];
   console.log("hello");
 
+  let tempName;
+
+  $.ajax({
+    url: 'getTemp',
+    type: 'GET',
+    dataType: 'JSON',
+    success: (data)=>{
+      tempName = data.temperature
+      console.log(tempName);
+    }
+  });
+
   database.ref('users/').once('value', (snapshot) => {
     const data = snapshot.val();
     const user = localStorage['loggedInUser'];
@@ -12,7 +24,7 @@ $(document).ready(() =>{
       const topKey = Object.keys(data[user].Clothes.Bottom);
       var cleanArray = [];
       for(const key of topKey) {
-        if (bottom[key].clean) {
+        if (bottom[key].clean && bottom[key].temp == tempName) {
         cleanArray.push(key);
         }
       }

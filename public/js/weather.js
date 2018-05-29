@@ -54,14 +54,14 @@
       break;
   }
 
-    const database = firebase.database();
-    const user = localStorage['loggedInUser'];
-    database.ref(`users/${user}`).once('value', (snapshot) => {
-        const data = snapshot.val();
-        const key = '1ca070dac85dc040481cc24e1eecb4bb';
-        const request = new XMLHttpRequest();
-        const city = data['location'];
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
+  const database = firebase.database();
+  const user = localStorage['loggedInUser'];
+  database.ref(`users/${user}`).once('value', (snapshot) => {
+    const data = snapshot.val();
+    const key = '1ca070dac85dc040481cc24e1eecb4bb';
+    const request = new XMLHttpRequest();
+    const city = data['location'];
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
 
     console.log(`The url is ${url}`);
     getWeatherInfo(request, url);
@@ -145,7 +145,6 @@ function getWeatherInfo(request, url) {
             const bottom = data.Clothes.Bottom;
             const arrayT = Object.values(top);
             const arrayB = Object.values(bottom);
-            console.log(top);
             
 
             let tempName;
@@ -163,27 +162,35 @@ function getWeatherInfo(request, url) {
                 
             }
 
+            
+
             if(tempName == 'default'){
 
             }else{
                 const suggestionT = new Array();
                 const suggestionB = new Array();
                 for(const item of arrayT){
-                    if(item.temp == tempName){
+                    if(item.temp == tempName && item.clean){
                         suggestionT.push(item)
                     }
                 }
                 for(const item of arrayB){
-                    if(item.temp == tempName){
+                    if(item.temp == tempName && item.clean){
                         suggestionB.push(item)
                     }
                 }
-                for(const item of suggestionT){
-                    $('.top').append(item.name)
-                }
-                for(const item of suggestionB){
-                    $('.bottom').append(item.name)
-                } 
+
+                $.ajax({
+                    url: 'suggestion',
+                    type: 'POST',
+                    data: {top: suggestionT,
+                            bottom: suggestionB,
+                            temp: tempName},
+                    success: (data) =>{
+                        console.log("success", data);
+                    }
+                });
+                
 
             }
             
