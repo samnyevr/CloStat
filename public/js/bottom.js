@@ -3,7 +3,7 @@ $(document).ready(() =>{
   const user = localStorage['loggedInUser'];
   console.log("hello");
 
-  database.ref('users/').once('value', (snapshot) => {
+  database.ref('users/').on('value', (snapshot) => {
     const data = snapshot.val();
     const user = localStorage['loggedInUser'];
     const bottom = data[user].Clothes.Bottom;
@@ -18,6 +18,7 @@ $(document).ready(() =>{
 
 
     let number=1;
+    $('.panel-group').html('');
     for(const clothes of cleanArray) {
       let imgUrl= bottom[clothes].photo;
       console.log(imgUrl);
