@@ -25,7 +25,7 @@ $(document).ready(() =>{
       $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading">
       <p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p></div>
       <div class="round">
-    					<input type="checkbox" id="checkbox${number}" />
+    					<input type="checkbox" id="checkbox${number}" value="${clothes}"/>
     					<label for="checkbox${number}"></label>
   					</div>
       <div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
@@ -40,8 +40,6 @@ $(document).ready(() =>{
   $(".submitButton").click(function() {
       console.log("clicked");
       getValueUsingClass();
-
-
 	});
 
   function getValueUsingClass(){
@@ -55,21 +53,20 @@ $(document).ready(() =>{
 	/* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
 	$(".round input:checked").each(function() {
     console.log("push");
-		chkArray.push($(this).val());
-
+    chkArray.push($(this).val());
 	});
 
   console.log(chkArray);
   database.ref(`users/${user}/Clothes/Bottom`).once('value', (snapshot) => {
   const data = snapshot.val();
-  console.log('You received some data!', data);
+  // console.log('You received some data!', data);
   for (const each of chkArray){
     let usage=data[each].numberUsage+1;
     console.log(usage);
     database.ref(`users/${user}/Clothes/Bottom/${each}` ).update({
        numberUsage: usage,
-       clean:false;
-  })
+       clean:false
+  });
 
 
   }

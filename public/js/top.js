@@ -70,8 +70,8 @@ $(document).ready(() =>{
     let usage=data[each].numberUsage+1;
     console.log(usage);
     database.ref(`users/${user}/Clothes/Top/${each}` ).update({
-       numberUsage: usage
-       clean:false;
+       numberUsage: usage,
+       clean:false
   })
 
 
@@ -89,7 +89,7 @@ $(document).ready(() =>{
   }
 
 
-  };
+  }
 
 
 

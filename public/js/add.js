@@ -25,6 +25,7 @@ $(document).ready(() => {
                 database.ref(dbPath).update({
                     clean: true,
                     numberUsage: 0,
+                    name: name,
                     temp: $('#temperature').val(),
                 });
             }
