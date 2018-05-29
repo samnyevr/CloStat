@@ -6,7 +6,7 @@
 }
 
 html{
-    height: 100%;
+    height: 80%;
     width: 100%;
 }
 
@@ -212,7 +212,7 @@ body {
 /* Navigation Bar */
 .icon-bar {
     width: 100%;
-    background-color:transparent;
+    background-color:white;
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -230,7 +230,7 @@ body {
 }
 
 .icon-bar a:hover {
-    background-color: #ffffff;
+    background-color: #f9c563;
 }
 
 .active {

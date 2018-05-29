@@ -5,7 +5,7 @@
 	<title>Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link href="css/style.css" rel="stylesheet">
   <!-- Firebase script -->
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
   <script>
@@ -40,23 +40,28 @@
   </script>-->
 </head>
 
-<body>
-  <div class="container">
-		<h1>CloStat</h1>
-    <label for="uname"><b>Username</b></label>
-    <input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
-    <br>
-    <label for="pwd"><b>Password</b></label>
-    <input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
-    <br>
+<body style="background-color: #eee;background-image:url(https://firebasestorage.googleapis.com/v0/b/clothstat.appspot.com/o/backgroundImg.png?alt=media&token=8a868fd8-c61f-47ce-b75d-ae1499fc758c); background-size:600px 620px;background-repeat: no-repeat;background-position: 35% -140%; ">
+  <div class="container" style="background-color:transparent;">
+		<h1 style="color:black;">CloStat</h1>
 
-    <div id="status"></div>
+		<div class="information" style="padding-top:90px">
+    	<label style="color:black; text-align:left;" for="uname"><b>Username</b></label>
+    	<input type="text" id="usernameinput" placeholder="Enter Username" name="uname">
+		</div>
+    <div class="information" style="padding-top:30px">
+    	<label style="color:black;text-align:left;" for="pwd"><b>Password</b></label>
+    	<input type="text" id="passwordinput" placeholder="Enter Password" name="pwd">
+		</div>
 
-    <button type="submit" id="login">Login</button>
 
-    <form action="/signup">
-      <button type="submit" id="signup">Sign Up</button>
-    </form>
+
+
+    <div style="padding-top:50px"></div>
+
+    <button  style="width: 90px;height: 30px; display:inline-block; font-size: 16px; width=50%;" type="submit" id="login">Login</button>
+    <!--<form action="/signup">-->
+      <button style="width: 90px;height: 30px; display:inline-block; font-size: 16px;width=50%;"type="submit" id="signup"><a href='/signup'>Sign Up</a></button>
+    <!--</form>  -->
   </div>
   <script src="js/login.js"></script>
 </body>
