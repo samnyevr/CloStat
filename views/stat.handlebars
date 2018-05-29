@@ -35,14 +35,15 @@
 		<h1>CloStat</h1>
 		<h1>Stat</h1>
 		<form action="">
-		<select onchange="drawChart(this.value)">
+		<select onchange="drawBarChart(this.value)">
 	    <option value="Top">Top</option>
 	    <option value="Bottom">Bottom</option>
-	    <option value="Misc">Misc</option>
+	    <option value="Accessory">Accessory</option>
   	</select>
 	</form>
 
-		<div id="chart_div"></div>
+		<div id="chart_div1"></div>
+				<div id="chart_div2"></div>
 	</div>
 	<div class="icon-bar">
 		<a href="/closet"><img src="images/closet.png"></i></a>

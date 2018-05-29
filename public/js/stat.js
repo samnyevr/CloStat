@@ -3,7 +3,7 @@ $(document).ready(() =>{
 	google.charts.load('current', {'packages':['corechart']});
 
 	// Set a callback to run when the Google Visualization API is loaded.
-	google.charts.setOnLoadCallback(drawChart("Top"));
+	google.charts.setOnLoadCallback(drawBarChart("Top"));
 
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
@@ -24,7 +24,7 @@ $(document).ready(() =>{
 	});
 });
 
-function drawChart(part) {
+function drawBarChart(part) {
 
 	const user = localStorage['loggedInUser'];
 	const database = firebase.database();
@@ -46,13 +46,14 @@ function drawChart(part) {
 			}
 
 			let option = {
-				'title':'Bottom Usages',
+				'title':`${part}` + " Usage",
 				backgroundColor: { fill:'transparent' },
-				height: 100,
-				vAxis: {viewWindow:{min:0}}
+				height: 400,
+				bar: { groupWidth: "61%" },
+				chartArea:{width:'50%'}
 			}
 
-			let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+			let chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
 			chart.draw(list, option);
 
 		});
