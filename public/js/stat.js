@@ -26,9 +26,15 @@ $(document).ready(() =>{
 
 function drawChart(part) {
 
+	const user = localStorage['loggedInUser'];
 	const database = firebase.database();
-		database.ref('users/Bob/Clothes').once('value', (snapshot) => {
+	try {
+		database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
 			const data = snapshot.val();
+			if(data == null) {
+				window.alert(`${user} did not have any clothes in the closet!`);
+				return;
+			}
 			const key = Object.keys(data);
 
 			const list = new google.visualization.DataTable();
@@ -50,4 +56,8 @@ function drawChart(part) {
 			chart.draw(list, option);
 
 		});
+	} catch(err) {
+		window.alert(`${user} did not have any tops in the closet!`);
+		console.log(err);
+	}
 };

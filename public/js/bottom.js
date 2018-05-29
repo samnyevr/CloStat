@@ -6,12 +6,15 @@ $(document).ready(() =>{
   database.ref('users/').on('value', (snapshot) => {
     const data = snapshot.val();
     const user = localStorage['loggedInUser'];
-    const bottom = data[user].Clothes.Bottom;
-    const topKey = Object.keys(data[user].Clothes.Bottom);
-    var cleanArray = [];
-    for(const key of topKey) {
-      if (bottom[key].clean) {
-       cleanArray.push(key);
+
+    try {
+      const bottom = data[user].Clothes.Bottom;
+      const topKey = Object.keys(data[user].Clothes.Bottom);
+      var cleanArray = [];
+      for(const key of topKey) {
+        if (bottom[key].clean) {
+        cleanArray.push(key);
+        }
       }
     }
     console.log(cleanArray);
@@ -34,7 +37,12 @@ $(document).ready(() =>{
       <p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
       number=number+1;
 
+      }
+    } catch(err) {
+      window.alert(`${user} did not have any bottoms in the closet!`);
+      console.log(err);
     }
+
   });
 
 

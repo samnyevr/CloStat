@@ -16,12 +16,14 @@ $(document).ready(() => {
                 localStorage['loggedInUser'] = uname;
                 window.location.href = '/index';
             } else {
-                $('#status').html('');
-                $('#status').append('Wrong password!');
+                // $('#status').html('');
+                // $('#status').append('Wrong password!');
+                window.alert('Wrong password!');
             }
         } else {
-            $('#status').html('');
-            $('#status').append('Wrong username!');
+            // $('#status').html('');
+            // $('#status').append('Wrong username!');
+            window.alert('Wrong username!');
         }
       });
 
