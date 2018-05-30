@@ -39,47 +39,41 @@
 	<div class="container">
 		<br>
 		<br>
-		<form action="">
-		<select onchange="drawBarChart(this.value)">
-	    <option value="Top">Top</option>
-	    <option value="Bottom">Bottom</option>
-	    <option value="Accessory">Accessory</option>
-  	</select>
-	</form>
+		<form action="">Choose A Data Visualization
+		<select onchange="drawChart(this.value)">
+			<option value="Bar">Bar</option>
+			<option value="Bubble">Bubble</option>
+			<!--<option value="Calendar">Calendar</option>-->
+			<option value="Column">Column</option>
+			<option value="Diff">Diff</option>
+			<option value="TreeMap">TreeMap</option>
+		</select>
+		</form>
 
-				<div id="chart_div1"></div>
-				<div id="chart_div2"></div>
-				<div id="scrollable">
-					<div id="chart_div3"></div>
-				</div>
-				<div id="chart_div4"></div>
-				<select id="DiffChart1" style="float:center;" onchange="drawDivChart()">
-			    <option value="Top">Top</option>
-			    <option value="Bottom">Bottom</option>
-			    <option value="Accessory">Accessory</option>
-		  	</select>
-				<select id="DiffChart2" style="float:center;" onchange="drawDivChart()">
-					<option value="Bottom">Bottom</option>
-					<option value="Top">Top</option>
-			    <option value="Accessory">Accessory</option>
-		  	</select>
-				<div id="chart_div5"></div>
-				<div id="chart_div6"></div>
-				<div id="chart_div7"></div>
-				<div id="chart_div8"></div>
-				<div id="chart_div9"></div>
-				<div id="chart_div10"></div>
+		<form id='barForm' action="">Choose a category to view
+			<select onchange="drawBarChart(this.value)">
+	    	<option value="Top">Top</option>
+	    	<option value="Bottom">Bottom</option>
+	    	<option value="Accessory">Accessory</option>
+  		</select>
+		</form>
+		<form id='diffForm' action="">Compare two categories's temperature
+			<div></div>
+			<select id="DiffChart1" style="float:center;" onchange="drawDiffChart()">
+				<option value="Top">Top</option>
+				<option value="Bottom">Bottom</option>
+				<option value="Accessory">Accessory</option>
+			</select>
+			<select id="DiffChart2" style="float:center;" onchange="drawDiffChart()">
+				<option value="Bottom">Bottom</option>
+				<option value="Top">Top</option>
+				<option value="Accessory">Accessory</option>
+			</select>
+		</form>
+
+		<div id="chart_div1"></div>
 
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<div class="icon-bar">
 		<a href="/closet"><img src="images/closet.png"></i></a>
 		<a href="/index"><img src="images/weather.png"></i></a>
