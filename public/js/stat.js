@@ -6,12 +6,11 @@ $(document).ready(() =>{
 	google.charts.load('current', {'packages':['treemap']});
 
 	// Set a callback to run when the Google Visualization API is loaded.
+
 	google.charts.setOnLoadCallback(drawBarChart("Top"));
-	google.charts.setOnLoadCallback(drawBubbleChart());
-	google.charts.setOnLoadCallback(drawCalendar());
-	google.charts.setOnLoadCallback(drawColumnChart("Top"));
-	google.charts.setOnLoadCallback(drawDivChart());
-	google.charts.setOnLoadCallback(drawTreeMap());
+
+	$("#diffForm").hide();
+
 	/*
 	google.charts.setOnLoadCallback(drawIntervalChart());
 	google.charts.setOnLoadCallback(drawLineChart());
@@ -21,21 +20,40 @@ $(document).ready(() =>{
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
 	// draws it.
-
-
-	$('.weatherBar').click(()=>{
-
-			$('.weatherBar').attr('src','/images/weatherActive.png');
-			click=true;
-
-	});
-
-	$('.closetBar').click(()=>{
-			$('.closetBar').attr('src','/images/closetActive.png');
-			click=true;
-
-	});
 });
+
+function drawChart(chart){
+	if(chart == "Bar"){
+		$("#barForm").show();
+		$("#diffForm").hide();
+		google.charts.setOnLoadCallback(drawBarChart("Top"));
+	}
+	else if(chart == "Bubble"){
+		$("#barForm").hide();
+		$("#diffForm").hide();
+		google.charts.setOnLoadCallback(drawBubbleChart());
+	}
+	else if(chart == "Calendar"){
+		$("#barForm").hide();
+		$("#diffForm").hide();
+		google.charts.setOnLoadCallback(drawCalendar());
+	}
+	else if(chart == "Column"){
+		$("#barForm").hide();
+		$("#diffForm").hide();
+		google.charts.setOnLoadCallback(drawColumnChart("Top"));
+	}
+	else if(chart == "Diff"){
+		$("#barForm").hide();
+		$("#diffForm").show();
+		google.charts.setOnLoadCallback(drawDiffChart());
+	}
+	else if(chart == "TreeMap"){
+		$("#barForm").hide();
+		$("#diffForm").hide();
+		google.charts.setOnLoadCallback(drawTreeMap());
+	}
+}
 
 function drawBarChart(part) {
 
@@ -63,7 +81,12 @@ function drawBarChart(part) {
 				backgroundColor: { fill:'transparent' },
 				height: 400,
 				bar: { groupWidth: "61%" },
-				chartArea:{width:'50%'}
+				chartArea:{width:'50%'},
+				hAxis:{
+					viewWindow:{
+						min: 0
+					}
+				}
 			}
 
 			let chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -130,7 +153,7 @@ function drawBubbleChart() {
 				}
 			}
 
-			let chart = new google.visualization.BubbleChart(document.getElementById('chart_div2'));
+			let chart = new google.visualization.BubbleChart(document.getElementById('chart_div1'));
 			chart.draw(list, option);
 
 		});
@@ -176,11 +199,11 @@ function drawCalendar() {
 				'title': " Usage",
 				backgroundColor: { fill:'transparent' },
 				height: 500,
-				calendar: { cellSize: 6.5},
+				calendar: { cellSize: 6},
 
 			}
 
-			let chart = new google.visualization.Calendar(document.getElementById('chart_div3'));
+			let chart = new google.visualization.Calendar(document.getElementById('chart_div1'));
 			chart.draw(list, option);
 
 		});
@@ -215,10 +238,10 @@ function drawColumnChart(part) {
 				'title':`${part}` + " Usage",
 				backgroundColor: { fill:'transparent' },
 				height: 400,
-				width: 400
+				width: "100%"
 			}
 
-			let chart = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+			let chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
 			chart.draw(list, option);
 
 		});
@@ -228,7 +251,7 @@ function drawColumnChart(part) {
 	}
 };
 
-function drawDivChart() {
+function drawDiffChart() {
 
 	const user = localStorage['loggedInUser'];
 	const database = firebase.database();
@@ -285,7 +308,7 @@ function drawDivChart() {
 				width: 400
 			}
 
-			let chartDiff = new google.visualization.PieChart(document.getElementById('chart_div5'));
+			let chartDiff = new google.visualization.PieChart(document.getElementById('chart_div1'));
 			//let chart = new google.visualization.ScatterChart(document.getElementById('chart_div5'));
 			let diffData = chartDiff.computeDiff(list1, list2);
 			chartDiff.draw(diffData, option);
@@ -337,7 +360,7 @@ function drawTreeMap() {
 				width: "100%",
 			}
 
-			let chart = new google.visualization.TreeMap(document.getElementById('chart_div6'));
+			let chart = new google.visualization.TreeMap(document.getElementById('chart_div1'));
 			chart.draw(list, option);
 
 		});
