@@ -57,39 +57,52 @@
 </head>
 
 <body>
+	<div class="topBar">
+
+		<span style="font-size:30px;">Add Clothes</span>
+
+	</div>
 	<div class="container">
-		<h1>CloStat</h1>
-    <h3>Add Clothes</h3>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
     <div class="form-group">
       <div>
-      <label for="description">Type </label>
-      <select id="type" name="type">
+      <label style="position:absolute; left:30%; " for="description">Type:</label>
+      <select style="width:30%;position:absolute; left:45%;background-color: #ffe5aa;border-color:transparent;"type="text" id="type" name="type">
         <option value="Top">Top</option>
         <option value="Bottom">Bottom</option>
         <option value="Accessory">Accessory</option>
       </select>
     </div>
     <br>
-
-      <label  for="name">Name: </label>
-      <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
-		</div>
 		<br>
 
-    <input type="file" id="cloth" required>
-    <br><img id="preview" src="#">
-
+      <label  style="position:absolute; left:30%" for="name">Name: </label>
+      <input style="width:30%;position:absolute; left:45%;background-color: #ffe5aa;border-color: transparent;border-radius:5px" type="text"  id="name" placeholder="Name" name="name" required></input>
+		</div>
+		<br>
+		<br>
+    <input style="position:absolute; left:30%" type="file" id="cloth" required>
+    <br><img id="preview" src="">
+		<br>
+		<br>
 		<div>
-      <label for="status">Temperature: </label>
-      <select id="temperature" name="temperature">
+      <label style="position:absolute; left:30%"for="status">Temperature:</label>
+      <select style="width:30%;position:absolute; left:55%;background-color: #ffe5aa;border-color: transparent;border-radius:5px"  id="temperature" name="temperature">
         <option value="hot">Hot</option>
         <option value="warm">Warm</option>
         <option value="cold">Cold</option>
       </select>
     </div>
 		<br>
-		<button id="addButton" type="button" href="/closet">Add!</button>
-    <img id="test" src="#">
+		<br>
+		<br>
+		<button class="submitButton"id="addButton" type="button" href="/closet">Add It</button>
+    <img id="test" src="">
 	</div>
 	<div class="icon-bar">
 		<a href="/closet"><img src="images/closet.png"></i></a>
