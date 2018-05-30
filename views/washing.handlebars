@@ -7,32 +7,41 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	<script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA9qeDEWivwl8pN0OjpKABOS8bOZZHZiOw",
+      authDomain: "clothstat.firebaseapp.com",
+      databaseURL: "https://clothstat.firebaseio.com",
+      projectId: "clothstat",
+      storageBucket: "clothstat.appspot.com",
+      messagingSenderId: "692402704354"
+    };
+    firebase.initializeApp(config);
+  </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="js/washing.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <body>
 	<div class="container">
-<h1>CloStat</h1>
-		<i class="fa fa-plus" style="font-size:24px;margin-left:95%;margin-top:5%;color:black"></i>
-		<a href="/" style="float:left">What to Wear Today</a>
-		<br><br><br>
-		<h1>Top</h1>
-		<img class="percentage"src="/images/washing.jpg">
-		<br><br><br>
-		{{#each topsDirtty}}
-			<div>
-	        		<h2 class="list">{{name}}</h2>
+<h1>Laundry</h1>
+{{!-- <form action="/index" method="get"> --}}
 
-	    	</div>
-		{{/each}}
-    <h2 style="text-align:left; margin-left:25%">37%</h2>
-		<br><br><br>
-
-		<div class="navbar">
-			<ul>
-				<li style="margin-left:10%"><a href="/stat"><img src="images/casual-t-shirt-.svg"></a></li>
-				<li style="margin-left:10%"><a href="/washing"><img src="images/washing-machine.svg"></a></li>
-			</ul>
-		</div>
+<div class="panel-group" id="accordion">
+</div>
+<input class="submitButton" type="submit" value="Wash It">
+{{!-- </form> --}}
+</div>
+<div class="icon-bar">
+<a href="/closet"><img src="images/closet.png"></i></a>
+<a href="/index"><img src="images/weather.png"></i></a>
+<a href="/stat"><img src="images/stat.png"></i></a>
+</div>
 
 </html>

@@ -3,10 +3,14 @@
 */
 
 exports.view = function(req, res){
-	res.render('suggestion');
+	res.send("this is a test")
 };
 
 exports.next = function(req,res){
+	
+}
+
+exports.random = function(req,res){
 	
 }
 
