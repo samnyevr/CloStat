@@ -17,7 +17,7 @@ $(document).ready(() =>{
 
 
 
-  database.ref('users/').once('value', (snapshot) => {
+  database.ref('users/').on('value', (snapshot) => {
     console.log("first once");
     const data = snapshot.val();
     const user = localStorage['loggedInUser'];
@@ -33,12 +33,14 @@ $(document).ready(() =>{
       }
       console.log(cleanArray);
 
-      let number=1;
-      for(const clothes of cleanArray) {
-        let imgUrl= top[clothes].photo;
+    let number=1;
+    $('.panel-group').html('');
+    for(const clothes of cleanArray) {
+      let imgUrl= top[clothes].photo;
 
-        let usageNumber=data[user].Clothes.Top[`${clothes}`].numberUsage
-        $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading"><p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p>
+      let usageNumber=data[user].Clothes.Top[`${clothes}`].numberUsage
+      $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading">
+      <p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p>
 
           </div>
           <div class="round">
