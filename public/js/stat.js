@@ -268,6 +268,7 @@ function drawDiffChart() {
 			const list1 = new google.visualization.DataTable();
 			list1.addColumn('string', 'temp');
 			list1.addColumn('number', 'weared');
+			list1.addColumn({type:'string', role: 'tooltip'});
 
 			const keep1 = {hot:0, cold:0, warm:0};
 			for(const item of Object.keys(data[part1])){
@@ -278,13 +279,14 @@ function drawDiffChart() {
 				else
 					{keep1.warm++;}
 			}
-			list1.addRow(["hot", keep1.hot]);
-			list1.addRow(["cold", keep1.cold]);
-			list1.addRow(["warm", keep1.warm]);
+			list1.addRow(["hot", keep1.hot, `${part1}`]);
+			list1.addRow(["cold", keep1.cold, `${part1}`]);
+			list1.addRow(["warm", keep1.warm, `${part1}`]);
 
 			const list2 = new google.visualization.DataTable();
 			list2.addColumn('string', 'temp');
 			list2.addColumn('number', 'weared');
+			list2.addColumn({type:'string', role: 'tooltip'});
 
 			const keep2 = {hot:0, cold:0, warm:0};
 			for(const item of Object.keys(data[part2])){
@@ -295,9 +297,9 @@ function drawDiffChart() {
 				else
 					{keep2.warm++;}
 			}
-			list2.addRow(["hot", keep2.hot]);
-			list2.addRow(["cold", keep2.cold]);
-			list2.addRow(["warm", keep2.warm]);
+			list2.addRow(["hot", keep2.hot, `${part2}`]);
+			list2.addRow(["cold", keep2.cold, `${part2}`]);
+			list2.addRow(["warm", keep2.warm, `${part2}`]);
 
 
 			let option = {
