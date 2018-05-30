@@ -19,9 +19,12 @@ const washing = require('./routes/washing');
 const add = require('./routes/add');
 const test = require('./routes/test');
 
- let temp;
- const HOT = 80;
- const COLD = 61;
+let temp;
+const HOT = 80;
+const COLD = 61;
+
+let suggestionTop = Array();
+let suggestionBottom = Array();
 
 // Example route
 // var user = require('./routes/user');
@@ -54,11 +57,25 @@ app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
 app.get('/suggestion', suggestion.view);
-app.get('/top', top.view);
+app.get('/top',top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
 app.get('/add', add.view);
 app.get('/test', test.view);
+
+app.get('/getTemp', (req,res)=>{
+	res.send({temperature: temp});
+})
+
+
+app.post('/suggestion',(req,res)=>{
+	suggestionTop = req.body.top;
+	suggestionBottom = req.body.bottom;
+	temp = req.body.temp;
+	console.log(suggestionTop);
+	console.log(suggestionBottom);
+	res.send("registered on backend");
+})
 // Example route
 // app.get('/users', user.list);
 
