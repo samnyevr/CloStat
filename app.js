@@ -26,6 +26,7 @@ const COLD = 61;
 let suggestionTop = Array();
 let suggestionBottom = Array();
 
+
 // Example route
 // var user = require('./routes/user');
 
@@ -56,7 +57,26 @@ app.get('/signup', signup.view);
 app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
-app.get('/suggestion', suggestion.view);
+app.get('/suggestion',(req,res)=>{
+	const randomImgTop = randomImg(suggestionTop);
+	const randomImgBottom = randomImg(suggestionBottom);
+
+	res.send({
+		top: randomImgTop,
+		bottom: randomImgBottom
+	});
+});
+
+function randomImg(array){
+	let max = 0;
+
+	for(const item of array){
+		max++;
+	}
+	const index = Math.floor(Math.random() * (max));
+	console.log(array[index].photo);
+	return(array[index].photo); 
+}
 app.get('/top',top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
