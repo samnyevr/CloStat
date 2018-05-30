@@ -53,7 +53,7 @@ $(document).ready(() =>{
 
       }
     } catch(err) {
-      window.alert('${user} did not have any bottoms in the closet!');
+      window.alert(`${user} did not have any bottoms in the closet!`);
       console.log(err);
     }
 

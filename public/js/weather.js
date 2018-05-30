@@ -10,6 +10,17 @@
  function getLocAndShowTemp() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
+    const database = firebase.database();
+    const user = localStorage['loggedInUser'];
+
+    // Get the default temperature while the geolocation loads.
+    database.ref(`users/${user}`).once('value', (snapshot) => {
+        const data = snapshot.val();
+        const city = data['location'];
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
+    
+        getWeatherInfo(request, url);
+    });
 
     if(navigator.geolocation) {
         console.log('Got permission!');
@@ -65,7 +76,7 @@
 
     console.log(`The url is ${url}`);
     getWeatherInfo(request, url);
-});
+  });
 }
 
 $(document).ready(() => {
@@ -138,70 +149,72 @@ function getWeatherInfo(request, url) {
         localStorage['condition'] = condition;
         const COLD = 61;
         const HOT = 80;
+        const user = localStorage['loggedInUser'];
 
-        database.ref('users/Bob').once('value', (snapshot) => {
+        database.ref(`users/${user}`).once('value', (snapshot) => {
             const data = snapshot.val();
-            const top = data.Clothes.Top;
-            const bottom = data.Clothes.Bottom;
-            const arrayT = Object.values(top);
-            const arrayB = Object.values(bottom);
-            
 
-            let tempName;
-            if(temp<COLD){
-                tempName = 'cold';
+            try {
+                const top = data.Clothes.Top;
+                const bottom = data.Clothes.Bottom;
+                const arrayT = Object.values(top);
+                const arrayB = Object.values(bottom);
 
-            }else if(temp>= COLD && temp <= HOT){
-                tempName = 'warm';
-                
-            }else if (temp > HOT){
-                tempName = 'hot';
-                
-            }else{
-                tempName = 'default';
-                
-            }
+                let tempName;
+                if(temp<COLD){
+                    tempName = 'cold';
 
-            
-
-            if(tempName == 'default'){
-
-            }else{
-                const suggestionT = new Array();
-                const suggestionB = new Array();
-                for(const item of arrayT){
-                    if(item.temp == tempName && item.clean){
-                        suggestionT.push(item)
-                    }
-                }
-                for(const item of arrayB){
-                    if(item.temp == tempName && item.clean){
-                        suggestionB.push(item)
-                    }
+                }else if(temp>= COLD && temp <= HOT){
+                    tempName = 'warm';
+                    
+                }else if (temp > HOT){
+                    tempName = 'hot';
+                    
+                }else{
+                    tempName = 'default';
+                    
                 }
 
-                $.ajax({
-                    url: 'suggestion',
-                    type: 'POST',
-                    data: {top: suggestionT,
-                            bottom: suggestionB,
-                            temp: tempName},
-                    success: (data) =>{
-                        console.log("success", data);
+                if(tempName == 'default'){
+
+                }else{
+                    const suggestionT = new Array();
+                    const suggestionB = new Array();
+                    for(const item of arrayT){
+                        if(item.temp == tempName && item.clean){
+                            suggestionT.push(item)
+                        }
                     }
-                });
-                
+                    for(const item of arrayB){
+                        if(item.temp == tempName && item.clean){
+                            suggestionB.push(item)
+                        }
+                    }
 
+                    $.ajax({
+                        url: 'suggestion',
+                        type: 'POST',
+                        data: {top: suggestionT,
+                                bottom: suggestionB,
+                                temp: tempName},
+                        success: (data) =>{
+                            $.ajax({
+                                url: 'suggestion',
+                                type: 'GET',
+                                dataType: 'JSON',
+                                success: (arrayImg)=>{
+                                    $('.top img').attr('src',arrayImg.top);
+                                    $('.bottom img').attr('src',arrayImg.bottom);
+                                }
+                            })
+                        }
+                    });
+                }
+            } catch(err) {
+                console.log(err);
+                return;
             }
-            
-
         });
-
-        
-        // Save data to local storage (no expiration date)
-        // window.localStorage.setItem("temp",temp);
-        
-
         
     }
 
@@ -214,7 +227,6 @@ function getWeatherInfo(request, url) {
         }
     }
 }
-
 
 /*
  * Function Name: displayWeather()
