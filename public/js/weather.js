@@ -147,7 +147,7 @@ function getWeatherInfo(request, url) {
         localStorage['temp'] = temp;
         localStorage['tempUnit'] = 'F';
         localStorage['condition'] = condition;
-        const COLD = 61;
+        const COLD = 65;
         const HOT = 80;
         const user = localStorage['loggedInUser'];
 
@@ -218,14 +218,6 @@ function getWeatherInfo(request, url) {
         
     }
 
-    function suggestMe(e){
-        if(e.type == 'top'){
-            $('.top').append(e.name);
-        }
-        else if(e.type == 'bottom'){
-            $('.bottom').append(e.name);
-        }
-    }
 }
 
 /*
