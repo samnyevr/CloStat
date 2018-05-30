@@ -198,7 +198,6 @@ function drawCalendar() {
 			let option = {
 				'title': " Usage",
 				backgroundColor: { fill:'transparent' },
-				height: 500,
 				calendar: { cellSize: 6},
 
 			}
@@ -304,8 +303,7 @@ function drawDiffChart() {
 			let option = {
 				'title':`${part1} vs ${part2} Temperature`,
 				backgroundColor: { fill:'transparent' },
-				height: 400,
-				width: 400
+				width: "100%"
 			}
 
 			let chartDiff = new google.visualization.PieChart(document.getElementById('chart_div1'));
