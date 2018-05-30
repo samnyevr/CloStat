@@ -198,7 +198,15 @@ function getWeatherInfo(request, url) {
                                 bottom: suggestionB,
                                 temp: tempName},
                         success: (data) =>{
-                            console.log("success", data);
+                            $.ajax({
+                                url: 'suggestion',
+                                type: 'GET',
+                                dataType: 'JSON',
+                                success: (arrayImg)=>{
+                                    $('.top img').attr('src',arrayImg.top);
+                                    $('.bottom img').attr('src',arrayImg.bottom);
+                                }
+                            })
                         }
                     });
                 }
