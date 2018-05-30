@@ -1,13 +1,22 @@
 $(document).ready(() =>{
 	// Load the Visualization API and the corechart package.
 	google.charts.load('current', {'packages':['corechart']});
-	google.charts.load("current", {packages:["calendar"]});
+	google.charts.load("current", {'packages':["calendar"]});
+	google.charts.load('current', {'packages':['scatter']});
+	google.charts.load('current', {'packages':['treemap']});
 
 	// Set a callback to run when the Google Visualization API is loaded.
 	google.charts.setOnLoadCallback(drawBarChart("Top"));
 	google.charts.setOnLoadCallback(drawBubbleChart());
 	google.charts.setOnLoadCallback(drawCalendar());
 	google.charts.setOnLoadCallback(drawColumnChart("Top"));
+	google.charts.setOnLoadCallback(drawDivChart());
+	google.charts.setOnLoadCallback(drawTreeMap());
+	/*
+	google.charts.setOnLoadCallback(drawIntervalChart());
+	google.charts.setOnLoadCallback(drawLineChart());
+	google.charts.setOnLoadCallback(drawScatterChart());
+	*/
 
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
@@ -167,7 +176,7 @@ function drawCalendar() {
 				'title': " Usage",
 				backgroundColor: { fill:'transparent' },
 				height: 500,
-				calendar: { cellSize: 10},
+				calendar: { cellSize: 6.5},
 
 			}
 
@@ -210,6 +219,125 @@ function drawColumnChart(part) {
 			}
 
 			let chart = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+			chart.draw(list, option);
+
+		});
+	} catch(err) {
+		window.alert(`${user} did not have any ${part} in the closet!`);
+		console.log(err);
+	}
+};
+
+function drawDivChart() {
+
+	const user = localStorage['loggedInUser'];
+	const database = firebase.database();
+	try {
+		database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
+			const data = snapshot.val();
+			if(data == null) {
+				window.alert(`${user} did not have any clothes in the closet!`);
+				return;
+			}
+			const part1 = document.getElementById("DiffChart1").value;
+			const part2 = document.getElementById("DiffChart2").value;
+			const key = Object.keys(data);
+
+			const list1 = new google.visualization.DataTable();
+			list1.addColumn('string', 'temp');
+			list1.addColumn('number', 'weared');
+
+			const keep1 = {hot:0, cold:0, warm:0};
+			for(const item of Object.keys(data[part1])){
+				if(data[part1][item].temp == "hot")
+					{keep1.hot++;}
+				else if(data[part1][item].temp == "cold")
+					{keep1.cold++;}
+				else
+					{keep1.warm++;}
+			}
+			list1.addRow(["hot", keep1.hot]);
+			list1.addRow(["cold", keep1.cold]);
+			list1.addRow(["warm", keep1.warm]);
+
+			const list2 = new google.visualization.DataTable();
+			list2.addColumn('string', 'temp');
+			list2.addColumn('number', 'weared');
+
+			const keep2 = {hot:0, cold:0, warm:0};
+			for(const item of Object.keys(data[part2])){
+				if(data[part2][item].temp == "hot")
+					{keep2.hot++;}
+				else if(data[part2][item].temp == "cold")
+					{keep2.cold++;}
+				else
+					{keep2.warm++;}
+			}
+			list2.addRow(["hot", keep2.hot]);
+			list2.addRow(["cold", keep2.cold]);
+			list2.addRow(["warm", keep2.warm]);
+
+
+			let option = {
+				'title':`${part1} vs ${part2} Temperature`,
+				backgroundColor: { fill:'transparent' },
+				height: 400,
+				width: 400
+			}
+
+			let chartDiff = new google.visualization.PieChart(document.getElementById('chart_div5'));
+			//let chart = new google.visualization.ScatterChart(document.getElementById('chart_div5'));
+			let diffData = chartDiff.computeDiff(list1, list2);
+			chartDiff.draw(diffData, option);
+
+		});
+	} catch(err) {
+		window.alert(`${user} did not have any ${part} in the closet!`);
+		console.log(err);
+	}
+};
+
+function drawTreeMap() {
+
+	const user = localStorage['loggedInUser'];
+	const database = firebase.database();
+	try {
+		database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
+			const data = snapshot.val();
+			if(data == null) {
+				window.alert(`${user} did not have any clothes in the closet!`);
+				return;
+			}
+			const key = Object.keys(data);
+
+			const list = new google.visualization.DataTable();
+			list.addColumn('string', 'Category');
+			list.addColumn('string', 'Parent');
+			list.addColumn('number', 'size');
+
+			list.addRow(['Closet', null, 0]);
+			list.addRow(['Top', 'Closet', data["Top"].length]);
+			list.addRow(['Bottom', 'Closet', data["Bottom"].length]);
+			list.addRow(['Accessory', 'Closet', data["Accessory"].length]);
+
+			for(const item of Object.keys(data["Top"])){
+				list.addRow([item, 'Top', data["Top"][item].numberUsage]);
+			}
+			for(const item of Object.keys(data["Bottom"])){
+				list.addRow([item, 'Bottom', data["Bottom"][item].numberUsage]);
+			}
+			for(const item of Object.keys(data["Accessory"])){
+				list.addRow([item, 'Accessory', data["Accessory"][item].numberUsage]);
+			}
+
+			let option = {
+				'title': 'TreeMap of All clothes',
+				backgroundColor: { fill:'transparent' },
+				height: 400,
+				width: "100%",
+			}
+
+			let chart = new google.visualization.TreeMap(document.getElementById('chart_div6'));
 			chart.draw(list, option);
 
 		});
