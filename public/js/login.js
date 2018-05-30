@@ -26,7 +26,14 @@ $(document).ready(() => {
             window.alert('Wrong username!');
         }
       });
-
-      //database.ref('users/').remove();
     });
   });
+
+function togglePassword() {
+    const input = document.getElementById("passwordinput");
+    if(input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
