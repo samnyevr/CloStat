@@ -1,10 +1,13 @@
 $(document).ready(() =>{
 	// Load the Visualization API and the corechart package.
 	google.charts.load('current', {'packages':['corechart']});
+	google.charts.load("current", {packages:["calendar"]});
 
 	// Set a callback to run when the Google Visualization API is loaded.
 	google.charts.setOnLoadCallback(drawBarChart("Top"));
 	google.charts.setOnLoadCallback(drawBubbleChart());
+	google.charts.setOnLoadCallback(drawCalendar());
+	google.charts.setOnLoadCallback(drawColumnChart("Top"));
 
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
@@ -114,7 +117,7 @@ function drawBubbleChart() {
 								viewWindow: { min: -2, max: 20},
 								baselineColor: {fill: 'transparent'},
 								gridlines: {color: 'transparent'},
-								textPosition: 'none' 
+								textPosition: 'none'
 				}
 			}
 
@@ -124,6 +127,94 @@ function drawBubbleChart() {
 		});
 	} catch(err) {
 		window.alert(`${user} did not have any tops in the closet!`);
+		console.log(err);
+	}
+};
+
+function drawCalendar() {
+
+	const user = localStorage['loggedInUser'];
+	const database = firebase.database();
+	try {
+		database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
+			const data = snapshot.val();
+			if(data == null) {
+				window.alert(`${user} did not have any clothes in the closet!`);
+				return;
+			}
+			const key = Object.keys(data);
+
+			const list = new google.visualization.DataTable();
+				list.addColumn({ type: 'date', id: 'Date' });
+       	list.addColumn({ type: 'number', id: 'Usage' });
+       	list.addRows([
+          [ new Date(2012, 3, 13), 37032 ],
+          [ new Date(2012, 3, 14), 38024 ],
+          [ new Date(2012, 3, 15), 38024 ],
+          [ new Date(2012, 3, 16), 38108 ],
+          [ new Date(2012, 3, 17), 38229 ],
+          [ new Date(2013, 9, 4), 38177 ],
+          [ new Date(2013, 9, 5), 38705 ],
+          [ new Date(2013, 9, 12), 38210 ],
+          [ new Date(2013, 9, 13), 38029 ],
+          [ new Date(2013, 9, 19), 38823 ],
+          [ new Date(2013, 9, 23), 38345 ],
+          [ new Date(2013, 9, 24), 38436 ],
+          [ new Date(2013, 9, 30), 38447 ]
+        ]);
+
+			let option = {
+				'title': " Usage",
+				backgroundColor: { fill:'transparent' },
+				height: 500,
+				calendar: { cellSize: 10},
+
+			}
+
+			let chart = new google.visualization.Calendar(document.getElementById('chart_div3'));
+			chart.draw(list, option);
+
+		});
+	} catch(err) {
+		window.alert(`${user} did not have any tops in the closet!`);
+		console.log(err);
+	}
+};
+
+function drawColumnChart(part) {
+
+	const user = localStorage['loggedInUser'];
+	const database = firebase.database();
+	try {
+		database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
+			const data = snapshot.val();
+			if(data == null) {
+				window.alert(`${user} did not have any clothes in the closet!`);
+				return;
+			}
+			const key = Object.keys(data);
+
+			const list = new google.visualization.DataTable();
+			list.addColumn('string', 'cloth');
+			list.addColumn('number', 'weared');
+
+			for(const item of Object.keys(data[part])){
+				list.addRow([item, data[part][item].numberUsage]);
+			}
+
+			let option = {
+				'title':`${part}` + " Usage",
+				backgroundColor: { fill:'transparent' },
+				height: 400,
+				width: 400
+			}
+
+			let chart = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+			chart.draw(list, option);
+
+		});
+	} catch(err) {
+		window.alert(`${user} did not have any ${part} in the closet!`);
 		console.log(err);
 	}
 };

@@ -273,3 +273,12 @@ body {
   padding-top:5px;
   padding-bottom: 5px;
 }
+
+/*Stat Page*/
+#scrollable{
+  white-space: nowrap;
+	overflow-y: hidden;
+  background-color: lightblue;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
