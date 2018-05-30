@@ -1,14 +1,17 @@
 $(document).ready(() => {
     const database = firebase.database();
     const storageRef = firebase.storage().ref();
-    const type = $('#type').val();
+
     const user = localStorage['loggedInUser'];
     let name = '';
-    let dbPath = `users/${user}/Clothes/${type}/`;
+    let dbPath;
 
     $('#addButton').click(() => {
         database.ref(`users/`).once('value', (snapshot) => {
             const data = snapshot.val();
+            const type = $('#type').val();
+            console.log(type);
+            dbPath = `users/${user}/Clothes/${type}/`;
             if(!name){
               name='No Name';
             }
