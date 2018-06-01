@@ -30,52 +30,164 @@ $(document).ready(() =>{
 			const bottom = data[user].Clothes.Bottom;
 			const keysT = Object.keys(top);
 			const keysB = Object.keys(bottom);
-			console.log(bottom);
+			let number=1;
+			$('.panel-group').html('');
 			for(const key of keysT) {
 				if (top[key].clean) {
-					$('#items').append(`<h4 class="list">${key}</h4>`);
+					let imgUrl= top[key].photo;
+					let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
+					$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+						<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+						</div>
+
+						<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+						<img src="${imgUrl}" class="pic" width="120">
+						<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+					number=number+1;
 				}
 			}
-			$('#CT').click(()=>{
-			console.log("CT");
+			for(const key of keysB) {
+				if (bottom[key].clean) {
+					let imgUrl= bottom[key].photo;
+					let usageNumber=data[user].Clothes.Bottom[`${key}`].numberUsage
+					$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+						<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+						</div>
+
+						<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+						<img src="${imgUrl}" class="pic" width="120">
+						<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+					number=number+1;
+				}
+			}
+
+			$('#ALL').click(()=>{
+				console.log("CT");
 				var myNode = document.getElementById("items");
 				myNode.innerHTML = '';
+				let number=1;
+				$('.panel-group').html('');
 				for(const key of keysT) {
 					if (top[key].clean) {
-						$('#items').append(`<h4 class="list">${key}</h4>`);
+						let imgUrl= top[key].photo;
+						let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
+					}
+				}
+				for(const key of keysB) {
+					if (bottom[key].clean) {
+						let imgUrl= bottom[key].photo;
+						let usageNumber=data[user].Clothes.Bottom[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
+					}
+				}
+			});
+			
+			
+			$('#CT').click(()=>{
+				console.log("CT");
+				var myNode = document.getElementById("items");
+				myNode.innerHTML = '';
+				let number=1;
+				$('.panel-group').html('');
+				for(const key of keysT) {
+					if (top[key].clean) {
+						let imgUrl= top[key].photo;
+						let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
 					}
 				}
 			});
 
 			$('#CB').click(()=>{
-			console.log("CB");
+				console.log("CB");
 				var myNode = document.getElementById("items");
 				myNode.innerHTML = '';
+				let number=1;
 				for(const key of keysB) {
 					if (bottom[key].clean) {
-						$('#items').append(`<h4 class="list">${key}</h4>`);
+						let imgUrl= bottom[key].photo;
+						let usageNumber=data[user].Clothes.Bottom[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
 					}
 				}
 			});
 
 			$('#DT').click(()=>{
-			console.log("CT");
+				console.log("CT");
 				var myNode = document.getElementById("items");
 				myNode.innerHTML = '';
+				$('.panel-group').html('');
+				let number=1;
 				for(const key of keysT) {
 					if (!top[key].clean) {
-						$('#items').append(`<h4 class="list">${key}</h4>`);
+						let imgUrl= top[key].photo;
+						let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
 					}
 				}
 			});
 
 			$('#DB').click(()=>{
-			console.log("CT");
+				console.log("CT");
 				var myNode = document.getElementById("items");
 				myNode.innerHTML = '';
+				let number=1;
 				for(const key of keysB) {
 					if (!bottom[key].clean) {
-						$('#items').append(`<h4 class="list">${key}</h4>`);
+						let imgUrl= bottom[key].photo;
+						let usageNumber=data[user].Clothes.Bottom[`${key}`].numberUsage
+						$('#items').append(`<div class="panel panel-default"> <div class="panel-heading">
+							<p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${key}</p>
+
+							</div>
+
+							<div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+							<img src="${imgUrl}" class="pic" width="120">
+							<p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+						number=number+1;
 					}
 				}
 			});
@@ -92,7 +204,7 @@ $(document).ready(() =>{
 					['Dirty Top',  7],
 					['Dirty Bottom', 2],
 
-				]);
+					]);
 
 				var options = {
 					legend:'none',

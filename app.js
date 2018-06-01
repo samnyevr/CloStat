@@ -12,7 +12,6 @@ const signup = require('./routes/signup');
 const index = require('./routes/index');
 const closet = require('./routes/closet');
 const stat = require('./routes/stat');
-const suggestion = require('./routes/suggestion');
 const top = require('./routes/top');
 const bottom = require('./routes/bottom');
 const washing = require('./routes/washing');
@@ -20,9 +19,6 @@ const add = require('./routes/add');
 const test = require('./routes/test');
 
 let temp;
-const HOT = 80;
-const COLD = 61;
-
 let suggestionTop = Array();
 let suggestionBottom = Array();
 
@@ -57,6 +53,12 @@ app.get('/signup', signup.view);
 app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
+app.get('/top',top.view);
+app.get('/bottom', bottom.view);
+app.get('/washing', washing.view);
+app.get('/add', add.view);
+app.get('/test', test.view);
+
 app.get('/suggestion',(req,res)=>{
 	const randomImgTop = randomImg(suggestionTop);
 	const randomImgBottom = randomImg(suggestionBottom);
@@ -66,6 +68,10 @@ app.get('/suggestion',(req,res)=>{
 		bottom: randomImgBottom
 	});
 });
+
+app.get('/getTemp', (req,res)=>{
+	res.send({temperature: temp});
+})
 
 function randomImg(array){
 	let max = 0;
@@ -77,15 +83,7 @@ function randomImg(array){
 	console.log(array[index].photo);
 	return(array[index].photo); 
 }
-app.get('/top',top.view);
-app.get('/bottom', bottom.view);
-app.get('/washing', washing.view);
-app.get('/add', add.view);
-app.get('/test', test.view);
 
-app.get('/getTemp', (req,res)=>{
-	res.send({temperature: temp});
-})
 
 
 app.post('/suggestion',(req,res)=>{
@@ -96,8 +94,7 @@ app.post('/suggestion',(req,res)=>{
 	console.log(suggestionBottom);
 	res.send("registered on backend");
 })
-// Example route
-// app.get('/users', user.list);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
