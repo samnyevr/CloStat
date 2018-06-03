@@ -86,16 +86,21 @@ $(document).ready(() =>{
     database.ref(`users/${user}/Clothes/Top`).once('value', (snapshot) => {
       const data = snapshot.val();
       console.log('You received some data!', data);
+      const time = new Date();
+      const date = `${time.getFullYear()}, ${time.getMonth()+1}, ${time.getDate()}, ${time.getMinutes()}`;
+      console.log(date);
 
       for (const each of chkArray){
         let usage=data[each].numberUsage+1;
         console.log(usage);
-        database.ref(`users/${user}/Clothes/Top/${each}` ).update({
-         numberUsage: usage,
-         clean:false
-       })
+      //   database.ref(`users/${user}/Clothes/Top/${each}` ).update({
+      //    numberUsage: usage,
+      //    clean:false
+      //  });
 
-
+       database.ref(`users/${user}/Clothes/Top/${each}/usageDates`).update({
+        
+       });
       }
     });
     /* we join the array separated by the comma */

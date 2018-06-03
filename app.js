@@ -16,7 +16,6 @@ const top = require('./routes/top');
 const bottom = require('./routes/bottom');
 const washing = require('./routes/washing');
 const add = require('./routes/add');
-const test = require('./routes/test');
 
 let temp;
 let suggestionTop = Array();
@@ -57,7 +56,6 @@ app.get('/top',top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
 app.get('/add', add.view);
-app.get('/test', test.view);
 
 app.get('/suggestion',(req,res)=>{
 	const randomImgTop = randomImg(suggestionTop);
