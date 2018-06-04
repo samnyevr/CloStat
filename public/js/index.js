@@ -1,5 +1,9 @@
-// window.localStorage.setItem("weather", document.getElementsByClassName("weather").value);
-// var temp= window.localStorage.getItem("weather");
+/*
+ * Filename: index.js
+ * Description: The home page of the website
+ * Note: This page will navigate to other pages so
+ * most of the buttons are interacting with other pages
+ */
 localStorage['weather'] = document.getElementsByClassName('weather').value;
 var temp = localStorage['weather'];
 console.log(temp);
@@ -7,7 +11,7 @@ console.log(temp);
 
 $(document).ready(() =>{
 	console.log("jQuery On!");
-	
+
 	$('.closetBar').click(()=>{
 
 		$('.closetBar').attr('src','/images/closetActive.png');

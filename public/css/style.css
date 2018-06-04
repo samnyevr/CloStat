@@ -1,3 +1,4 @@
+/* general stlying sheet for our whole webpage */
 /* General Usuage */
 *{
     -webkit-box-sizing: border-box;
@@ -95,6 +96,14 @@ body {
   opacity: 1;
 }
 
+.submitButton{
+  border-radius: 5%;
+  box-shadow: 1px 1px rgb(93.3%,93.3%,93.3%);
+  background-color:#ffe5aa;
+  border-color: transparent;
+  font-size:18px
+}
+
 /*************************************************************************/
 
 /* Closet */
@@ -180,6 +189,22 @@ body {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+.laundry{
+  position: absolute;
+
+  left: 3%;
+  width: 35px;
+  margin-top: 3px;
+
+}
+
+.topBar{
+  background-color:#ffe5aa;
+  text-align:center;
+  padding-top:5px;
+  padding-bottom: 5px;
+}
+
 /*************************************************************************/
 
 
@@ -264,29 +289,6 @@ body {
 /*************************************************************************/
 
 
-.submitButton{
-  border-radius: 5%;
-  box-shadow: 1px 1px rgb(93.3%,93.3%,93.3%);
-  background-color:#ffe5aa;
-  border-color: transparent;
-  font-size:18px
-}
-/*************************************************************************/
-.laundry{
-  position: absolute;
-
-  left: 3%;
-  width: 35px;
-  margin-top: 3px;
-
-}
-
-.topBar{
-  background-color:#ffe5aa;
-  text-align:center;
-  padding-top:5px;
-  padding-bottom: 5px;
-}
 
 /*Stat Page*/
 #scrollable{
@@ -295,3 +297,5 @@ body {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
 }
+
+/*************************************************************************/
