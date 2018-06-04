@@ -1,9 +1,15 @@
+/*
+ * login.js allow the user to login to their account and see their home page
+ * with the corresponding clothing recommendations.
+ */
+
 $(document).ready(() => {
     const database = firebase.database();
 
     $('#login').click(() => {
       console.log('login!');
       
+      // Retrieve the input field data and match it with the database data
       database.ref('users/').once('value', (snapshot) => {
         const data = snapshot.val();
         const keys = Object.keys(data);
@@ -16,19 +22,16 @@ $(document).ready(() => {
                 localStorage['loggedInUser'] = uname;
                 window.location.href = '/index';
             } else {
-                // $('#status').html('');
-                // $('#status').append('Wrong password!');
                 window.alert('Wrong password!');
             }
         } else {
-            // $('#status').html('');
-            // $('#status').append('Wrong username!');
             window.alert('Wrong username!');
         }
       });
     });
   });
 
+// User can choose to hide or show the password in the input field.
 function togglePassword() {
     const input = document.getElementById("passwordinput");
     if(input.type === "password") {
