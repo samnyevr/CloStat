@@ -180,14 +180,19 @@ function getWeatherInfo(request, url) {
                 }else{
                     const suggestionT = new Array();
                     const suggestionB = new Array();
+                    let maxT = 0;
+                    let maxB = 0;
                     for(const item of arrayT){
                         if(item.temp == tempName && item.clean){
-                            suggestionT.push(item)
+                            suggestionT.push(item);
+                            maxT++;
+
                         }
                     }
                     for(const item of arrayB){
                         if(item.temp == tempName && item.clean){
-                            suggestionB.push(item)
+                            suggestionB.push(item);
+                            maxB++;
                         }
                     }
 
@@ -195,7 +200,9 @@ function getWeatherInfo(request, url) {
                         url: 'suggestion',
                         type: 'POST',
                         data: {top: suggestionT,
+                                maxTop: maxT,
                                 bottom: suggestionB,
+                                maxBottom: maxB,
                                 temp: tempName},
                         success: (data) =>{
                             $.ajax({
