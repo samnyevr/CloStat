@@ -56,14 +56,11 @@ app.get('/signup', signup.view);
 app.get('/index', index.view);
 app.get('/closet', closet.view);
 app.get('/stat', stat.view);
-<<<<<<< HEAD
 app.get('/top',top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
 app.get('/add', add.view);
 
-=======
->>>>>>> parent of d735895... Closet rebuild
 app.get('/suggestion',(req,res)=>{
 	const randomImgTop = randomImg(suggestionTop);
 	const randomImgBottom = randomImg(suggestionBottom);
@@ -88,7 +85,6 @@ app.get('/top',top.view);
 app.get('/bottom', bottom.view);
 app.get('/washing', washing.view);
 app.get('/add', add.view);
-app.get('/test', test.view);
 
 app.get('/getTemp', (req,res)=>{
 	res.send({temperature: temp});
