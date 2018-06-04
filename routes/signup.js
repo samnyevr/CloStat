@@ -1,6 +1,6 @@
 
 /*
- * GET home page.
+ * GET signup page.
  */
 
 exports.view = function(req, res){

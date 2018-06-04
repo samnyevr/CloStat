@@ -1,5 +1,5 @@
 /*
-* GET home page.
+* GET suggestion page.
 */
 
 exports.view = function(req, res){
