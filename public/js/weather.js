@@ -1,26 +1,23 @@
 /*
- * Function Name: getLocAndShowTemp()
- * Description: Get the user's location and display the temperature. If user 
- * denied the permission, then use the user's default location.
- * Parameters: None
- * Error: Denied geolocation, geolocation not supported, geolocation timeout,
- * unknown error
- * return value: None 
+ * weather.js lets the user to allow the app to track user's location or 
+ * manually enter the city, which the OpenWeatherMap API use to make a 
+ * requests to get the latest weather information. After getting the weather 
+ * information, the temperature is converted from Kelvin to Celsius, and the 
+ * weather information is stored in local storage for other js files to use. 
+ * The corresponding weather information (temperature and weather condition) 
+ * is then displayed on the web page.
  */
+
+ /*
+  * Get the geolocation if user gives permission, then display the temperature
+  * and corresponding weather condition on the web page. If no permission is 
+  * given, use the default user location from when user signed up.
+  */
  function getLocAndShowTemp() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
     const database = firebase.database();
     const user = localStorage['loggedInUser'];
-
-    // Get the default temperature while the geolocation loads.
-    database.ref(`users/${user}`).once('value', (snapshot) => {
-        const data = snapshot.val();
-        const city = data['location'];
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
-    
-        getWeatherInfo(request, url);
-    });
 
     if(navigator.geolocation) {
         console.log('Got permission!');
@@ -42,12 +39,9 @@
 }
 
 /*
- * Function Name: showError()
- * Description: Print the corresponding error in console, then use the user's
- * default location to get the weather information
- * Parameters: error - the error code of geolocation
- * Error: None
- * return value: None
+ * Print the corresponding error in console, then use the user's default 
+ * location to get the weather information and display the weather information
+ * on the web page.
  */
  function showError(error) {
     switch(error.code) {
@@ -82,17 +76,15 @@
 $(document).ready(() => {
     getLocAndShowTemp();
 
+    // Change the displayed temperature between Celsius and Fahrenheit
     $('.weather').click(() => {
-        // $('.weather').innerHTML = '';
         if(localStorage['tempUnit'] == 'F') {
             const temp = fToC(Number(localStorage['temp']));
-            // temperature = `${temp}°C`;
             localStorage['tempUnit'] = 'C';
             localStorage['temp'] = temp;
             $('.weather').text(`${temp}°C`);
         } else {
             const temp = cToF(Number(localStorage['temp']));
-            // temperature = `${temp}°F`;
             localStorage['tempUnit'] = 'F';
             localStorage['temp'] = temp;
             $('.weather').text(`${temp}°F`);
@@ -111,14 +103,10 @@ $(document).ready(() => {
 });
 
 /*
-* Function Name: getWeatherInfo()
-* Description: Get the weather information using url and request and display
-* it on the HTML.
-* Parameters: request - the XMLHTTPRequest
-*             url - the url to retrieve the data
-* Error: timeout 
-* return value: None
-*/
+ * Wait for the URL request to finish before using a callback function to
+ * extract the temperature information from the API and make clothing 
+ * suggestions based on the temperature.
+ */
 function getWeatherInfo(request, url) {
     const database = firebase.database();
     request.onreadystatechange = function() {
@@ -140,7 +128,6 @@ function getWeatherInfo(request, url) {
         const temp = Math.round(toFahrenheit(response.main.temp));
         const condition = response.weather[0];
         const windSpeed = response.wind.speed;
-        const windCard = toCardinal(response.wind.deg);
         $('.weather').text(`${temp}°F`);
         $('.weather').append(displayWeather(condition));
         // Save data to local storage (no expiration date)
@@ -228,12 +215,7 @@ function getWeatherInfo(request, url) {
 }
 
 /*
- * Function Name: displayWeather()
- * Description: Display the corresponding weather icon depending on the
- * weather condition.
- * Parameters: condition - the weather condition (cloudy, sunny, etc.)
- * Error: None
- * return value: the image source of the corresponding weather 
+ * Display the corresponding weather picture depending on the weather condition.
  */
  function displayWeather(condition) {
     if(condition=="Rain") {
@@ -253,25 +235,3 @@ const toFahrenheit = (kelvin) => { return kelvin * (9/5) - 459.67 }
 const toCalvin = (kelvin) => { return kelvin - 273.15 }
 const fToC = (fahrenheit) => { return ((fahrenheit-32)*(5/9)).toFixed(1) }
 const cToF = (celsius) => { return Math.round((celsius*(9/5))+32) }
-
-/* Convert the degree to cardinal directions */
-const toCardinal = (degree) => {
-    if(degree > 360) degree -= 360;
-
-    if((degree >= 348.75 && degree <= 360) ||(degree >= 0 && degree <= 11.25)) return 'N';
-    else if(degree > 11.25 && degree <= 33.75) return 'NNE';
-    else if(degree > 33.75 && degree <=56.25) return 'NE';
-    else if(degree > 56.25 && degree <= 78.75) return 'ENE';
-    else if(degree > 78.75 && degree <= 101.25) return 'E';
-    else if(degree > 101.25 && degree <= 123.75) return 'ESE';
-    else if(degree > 123.75 && degree <= 146.25) return 'SE';
-    else if(degree > 146.25 && degree <= 168.75) return 'SSE';
-    else if(degree > 168.75 && degree <= 191.25) return 'S';
-    else if(degree > 191.25 && degree <= 213.75) return 'SSW';
-    else if(degree > 213.75 && degree <= 236.25) return 'SW';
-    else if(degree > 236.25 && degree <= 258.75) return 'WSW';
-    else if(degree > 258.75 && degree <= 281.25) return 'W';
-    else if(degree > 281.25 && degree <= 303.75) return 'WNW';
-    else if(degree > 303.75 && degree <= 326.25) return 'NW';
-    else return 'NNW';
-}

@@ -1,12 +1,12 @@
 /**
  * Module dependencies.
  */
-
  const express = require('express');
  const http = require('http');
  const path = require('path');
  const handlebars = require('express3-handlebars')
 
+ // Load modules using Node.js
  const login = require('./routes/login');
  const signup = require('./routes/signup');
  const index = require('./routes/index');
@@ -24,10 +24,6 @@
  let maxTop;
  let suggestionBottom = Array();
  let maxBottom;
-
-
-// Example route
-// var user = require('./routes/user');
 
 const app = express();
 
@@ -51,6 +47,7 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
+/* Make GET requests to different views */
 app.get('/', login.view);
 app.get('/signup', signup.view);
 app.get('/index', index.view);
@@ -103,6 +100,7 @@ app.post('/suggestion',(req,res)=>{
 // Example route
 // app.get('/users', user.list);
 
+/* Create HTTP server object and listens to the computer */
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
