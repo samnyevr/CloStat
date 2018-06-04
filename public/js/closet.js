@@ -31,8 +31,9 @@ $(document).ready(() =>{
 			const keysT = Object.keys(top);
 			const keysB = Object.keys(bottom);
 			console.log(bottom);
+			let number=1;
 			for(const key of keysT) {
-
+					
 					let imgUrl= top[key].photo;
 					let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
 					$('.panel-group').append(`<div class="panel panel-default"> <div class="panel-heading">
