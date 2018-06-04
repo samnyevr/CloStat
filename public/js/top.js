@@ -1,10 +1,21 @@
+/*
+ * top.js shows the user the suitable top clothes by getting
+ * the data from the database.There are two sections, one is the
+ * recommended clothes, the other section is for other clean top.
+ * This page also tracks what user wear for the day, user can choose
+ * from the suggestion and then the data in the database will mark the
+ * clothes as dirty and increase the usage.
+ */
 $(document).ready(() =>{
   const database = firebase.database();
   const user = localStorage['loggedInUser'];
   console.log("hello");
 
-  let tempName;
 
+ /*
+  * Get the tempName for recommandation
+  */
+  let tempName;
   $.ajax({
     url: 'getTemp',
     type: 'GET',
@@ -17,6 +28,10 @@ $(document).ready(() =>{
 
 
 
+  /*
+   * Get the top clothes data from the database
+   * and append the new data to the html file
+   */
   database.ref('users/').on('value', (snapshot) => {
     console.log("first once");
     const data = snapshot.val();
@@ -100,6 +115,9 @@ $(document).ready(() =>{
     getValueUsingClass();
   });
 
+  /*
+   * Get the values of users' choices
+   */
   function getValueUsingClass(){
     console.log("data");
     /* declare an checkbox array */
@@ -111,8 +129,9 @@ $(document).ready(() =>{
 
     });
 
-    console.log(chkArray);
-    console.log(user);
+    /*
+     * update the clothes status to dirty and increase the usage in the database
+     */
     database.ref(`users/${user}/Clothes/Top`).once('value', (snapshot) => {
       const data = snapshot.val();
       console.log('You received some data!', data);
@@ -128,12 +147,10 @@ $(document).ready(() =>{
           clean:false
         });
 
-       //database.ref(`users/${user}/Clothes/Top/${each}/usageDates`).update({
 
-       //});
       }
     });
-    /* we join the array separated by the comma */
+
     var selected;
     selected = chkArray.join(',') ;
 
@@ -143,7 +160,6 @@ $(document).ready(() =>{
       alert("Please at least check one of the checkbox");
 
     }
-
 
   }
 

@@ -1,14 +1,24 @@
+/*
+ * closet.js shows users' closet in a summary by getting data
+ * from the database. The data is separated by the clean or not,
+ * top or bottom by a drop down button There is a pie chart for
+ * summary that shows the basic statistic of your closet.
+ */
 function myFunction() {
 	document.getElementById("myDropdown").classList.toggle("show");
 }
 
 let click=false;
 
+
 $(document).ready(() =>{
 	console.log("jQuery on");
 	const database = firebase.database();
 
-	// Close the dropdown if the user clicks outside of it
+	/*
+   * Show the dropdown menu
+	 * Close the dropdown if the user clicks outside of it
+   */
 	window.onclick = function(event) {
 		if (!event.target.matches('.dropbtn')) {
 			var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -22,6 +32,10 @@ $(document).ready(() =>{
 		}
 	}
 
+	/*
+   * Get the clothes data from the database including top and bottom
+   * and append the data to the html file
+   */
 	database.ref('users/').once('value', (snapshot) => {
 		const data = snapshot.val();
 		const user = localStorage['loggedInUser'];
@@ -62,6 +76,9 @@ $(document).ready(() =>{
 
 			}
 
+			/*
+		   * Get the data of all clothes then user click on all
+		   */
 			$('#ALL').click(()=>{
 				console.log("ALL");
 				$('.dropbtn').text('All Clothes');
@@ -100,6 +117,9 @@ $(document).ready(() =>{
 			});
 
 
+			/*
+		   * Get the data of clean top clothes then user click on clean top
+		   */
 			$('#CT').click(()=>{
 				console.log("CT");
 				$('.dropbtn').text('Clean Top');
@@ -123,6 +143,10 @@ $(document).ready(() =>{
 				}
 			});
 
+
+			/*
+			 * Get the data of clean bottom clothes then user click on clean bottom
+			 */
 			$('#CB').click(()=>{
 				$('.dropbtn').text('Clean Bottom');
 				console.log("CB");
@@ -145,6 +169,9 @@ $(document).ready(() =>{
 				}
 			});
 
+			/*
+			 * Get the data of dirty top clothes then user click on drity top
+			 */
 			$('#DT').click(()=>{
 				console.log("DT");
 				$('.dropbtn').text('Dirty Top');
@@ -167,7 +194,9 @@ $(document).ready(() =>{
 				}
 			});
 
-
+			/*
+			 * Get the data of dirty bottom clothes then user click on drity bottom
+			 */
 			$('#DB').click(()=>{
 				$('.dropbtn').text('Dirty Bottom');
 				console.log("DB");
@@ -191,6 +220,9 @@ $(document).ready(() =>{
 			});
 
 
+			/*
+			 * Get the data for the pie chart
+			 */
 			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
 			let topClean = [];
@@ -215,6 +247,9 @@ $(document).ready(() =>{
 						}
 					}
 
+		  /*
+			 * draw the pie chart using google chart
+			 */
 			function drawChart() {
 
 				var data = google.visualization.arrayToDataTable([
@@ -242,6 +277,9 @@ $(document).ready(() =>{
 	});
 });
 
+/*
+ * For the change of the icon bar 
+ */
 $('.weatherBar').click(()=>{
 
 	$('.weatherBar').attr('src','/images/weatherActive.png');
