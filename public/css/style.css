@@ -119,18 +119,19 @@ body {
   position: absolute;
   width:350px;
   top: 5%;
-  left: -25%;
+  left: -20%;
   height: 200px;
 }
 .dropbtn {
-    float: left;
+    position: absolute !important;
     color: black;
     padding: 5px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-    margin-left: 200px;
-    margin-top: -75px;
+    left: 60%;
+    top: 60px;
+
     border-radius: 5%;
     box-shadow: 2px 2px rgb(93.3%,93.3%,93.3%);
     background-color:#ffe5aa;
@@ -149,7 +150,7 @@ body {
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: absolute !important;
+  position: absolute;
   top:30%;
 
 }
@@ -158,6 +159,8 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
+    left:55%;
+    top:100px;
     background-color: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
