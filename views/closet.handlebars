@@ -13,42 +13,41 @@
 	<script>
     // Initialize Firebase
     var config = {
-    	apiKey: "AIzaSyA9qeDEWivwl8pN0OjpKABOS8bOZZHZiOw",
-    	authDomain: "clothstat.firebaseapp.com",
-    	databaseURL: "https://clothstat.firebaseio.com",
-    	projectId: "clothstat",
-    	storageBucket: "clothstat.appspot.com",
-    	messagingSenderId: "692402704354"
+      apiKey: "AIzaSyA9qeDEWivwl8pN0OjpKABOS8bOZZHZiOw",
+      authDomain: "clothstat.firebaseapp.com",
+      databaseURL: "https://clothstat.firebaseio.com",
+      projectId: "clothstat",
+      storageBucket: "clothstat.appspot.com",
+      messagingSenderId: "692402704354"
     };
     firebase.initializeApp(config);
-</script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/closet.js"></script>
+  </script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/closet.js"></script>
 
 </head>
-<body>
-	<div class="topBar">
-		<a href="/washing"><img class="laundry" src="images/washing-machine.svg"/></a>
-		<span style="font-size:30px;">Closet</span>
-		<a  href="/add"><i id="addIcon"class="fa fa-plus" ></i></a>
-	</div>
+	<body>
+		<div class="topBar">
+			<a href="/washing"><img class="laundry" src="images/washing-machine.svg"/></a>
+			<span style="font-size:30px;">Closet</span>
+			<a  href="/add"><i id="addIcon"class="fa fa-plus" ></i></a>
+		</div>
 
-	<div class="container">
-		<div class="upper">
+		<div class="container">
 
 			<div class="dropdown">
 
-				<button onclick="myFunction()" class="dropbtn">All Items</button>
-				<div id="myDropdown" class="dropdown-content">
-					<a id="ALL" href="#ALL">All Clean Items</a>
-					<a id="CT" href="#CT">Clean Top</a>
-					<a id="CB" href="#CB">Clean Bottom</a>
-					<a id="DT" href="#DT">Dirty Top</a>
+				<button onclick="myFunction()" class="dropbtn">Clean Top</button>
+  			<div id="myDropdown" class="dropdown-content">
+    			<a id="CT" href="#CT">Clean Top</a>
+    			<a id="CB" href="#CB">Clean Bottom</a>
+    			<a id="DT" href="#DT">Dirty Top</a>
 					<a id="DB" href="#DB">Dirty Bottom</a>
-				</div>
+  			</div>
 			</div>
 
+<<<<<<< HEAD
 			<div id="piechart"></div>
 		</div>
 
@@ -59,17 +58,19 @@
 			
 		</div>
 
+=======
+>>>>>>> parent of d735895... Closet rebuild
 
 
-		<br><br><br>
-		
-		
-	</div>
+			<br><br><br>
+			<div id="items"></div>
+			<div id="piechart"></div>
+		</div>
 
 	<div class="icon-bar">
 		<a  href="/closet"><img class="closetBar" src="images/closetActive.png"></i></a>
 		<a  href="/index"><img class="weatherBar" src="images/weather.png"></i></a>
 		<a  href="/stat"><img class="statBar"src="images/stat.png"></i></a>
 	</div>
-</body>
+	</body>
 </html>
