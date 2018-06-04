@@ -1,3 +1,8 @@
+/*
+ * signup.js allow the user to signup and the information will be stored in
+ * firebase database.
+ */
+
 $(document).ready(() => {
     console.log("Ready to sign up!");
     const database = firebase.database();
