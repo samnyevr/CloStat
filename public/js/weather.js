@@ -138,6 +138,8 @@ function getWeatherInfo(request, url) {
         const HOT = 80;
         const user = localStorage['loggedInUser'];
 
+
+        //Send the weather information for the recomendation feature
         database.ref(`users/${user}`).once('value', (snapshot) => {
             const data = snapshot.val();
 
@@ -182,7 +184,7 @@ function getWeatherInfo(request, url) {
                             maxB++;
                         }
                     }
-
+                    //sends the weather data for the backend
                     $.ajax({
                         url: 'suggestion',
                         type: 'POST',
@@ -192,6 +194,7 @@ function getWeatherInfo(request, url) {
                                 maxBottom: maxB,
                                 temp: tempName},
                         success: (data) =>{
+                            //gets the random suggestion for the index page
                             $.ajax({
                                 url: 'suggestion',
                                 type: 'GET',
