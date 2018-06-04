@@ -1,21 +1,18 @@
 /*
- * weather.js lets the user to use geolocation or manually enter the city, 
- * which the OpenWeatherMap API use to make a requests to get the latest 
- * weather information. After getting the weather information, the temperature 
- * is converted from Kelvin to Celsius, and the weather information is stored 
- * in local storage for other js files to use. The corresponding weather 
- * information (temperature and weather condition) is then displayed on the web 
- * page.
+ * weather.js lets the user to allow the app to track user's location or 
+ * manually enter the city, which the OpenWeatherMap API use to make a 
+ * requests to get the latest weather information. After getting the weather 
+ * information, the temperature is converted from Kelvin to Celsius, and the 
+ * weather information is stored in local storage for other js files to use. 
+ * The corresponding weather information (temperature and weather condition) 
+ * is then displayed on the web page.
  */
 
  /*
- * Function Name: getLocAndShowTemp()
- * Description: Get the geolocation if user gives permission, then display the
- * temperature and corresponding weather condition on the web page.
- * Parameters: None
- * Error: geolocation error
- * return value: None
- */
+  * Get the geolocation if user gives permission, then display the temperature
+  * and corresponding weather condition on the web page. If no permission is 
+  * given, use the default user location from when user signed up.
+  */
  function getLocAndShowTemp() {
     const key = '1ca070dac85dc040481cc24e1eecb4bb';
     const request = new XMLHttpRequest();
@@ -42,12 +39,9 @@
 }
 
 /*
- * Function Name: showError()
- * Description: Print the corresponding error in console, then use the user's
- * default location to get the weather information
- * Parameters: error - the error code of geolocation
- * Error: None
- * return value: None
+ * Print the corresponding error in console, then use the user's default 
+ * location to get the weather information and display the weather information
+ * on the web page.
  */
  function showError(error) {
     switch(error.code) {
@@ -82,17 +76,15 @@
 $(document).ready(() => {
     getLocAndShowTemp();
 
+    // Change the displayed temperature between Celsius and Fahrenheit
     $('.weather').click(() => {
-        // $('.weather').innerHTML = '';
         if(localStorage['tempUnit'] == 'F') {
             const temp = fToC(Number(localStorage['temp']));
-            // temperature = `${temp}°C`;
             localStorage['tempUnit'] = 'C';
             localStorage['temp'] = temp;
             $('.weather').text(`${temp}°C`);
         } else {
             const temp = cToF(Number(localStorage['temp']));
-            // temperature = `${temp}°F`;
             localStorage['tempUnit'] = 'F';
             localStorage['temp'] = temp;
             $('.weather').text(`${temp}°F`);
@@ -111,14 +103,10 @@ $(document).ready(() => {
 });
 
 /*
-* Function Name: getWeatherInfo()
-* Description: Get the weather information using url and request and display
-* it on the HTML.
-* Parameters: request - the XMLHTTPRequest
-*             url - the url to retrieve the data
-* Error: timeout 
-* return value: None
-*/
+ * Wait for the URL request to finish before using a callback function to
+ * extract the temperature information from the API and make clothing 
+ * suggestions based on the temperature.
+ */
 function getWeatherInfo(request, url) {
     const database = firebase.database();
     request.onreadystatechange = function() {
@@ -227,12 +215,7 @@ function getWeatherInfo(request, url) {
 }
 
 /*
- * Function Name: displayWeather()
- * Description: Display the corresponding weather icon depending on the
- * weather condition.
- * Parameters: condition - the weather condition (cloudy, sunny, etc.)
- * Error: None
- * return value: the image source of the corresponding weather 
+ * Display the corresponding weather picture depending on the weather condition.
  */
  function displayWeather(condition) {
     if(condition=="Rain") {
