@@ -1,3 +1,9 @@
+/*
+ * add.js allow the user to upload information and pictures of the clothing
+ * into the firebase database. A preview of the image will be shown before the
+ * user actually uploads into the database.
+ */
+
 $(document).ready(() => {
     const database = firebase.database();
     const storageRef = firebase.storage().ref();
@@ -6,6 +12,8 @@ $(document).ready(() => {
     let name = '';
     let dbPath;
 
+    // Get the values from the HTML input boxes, then upload the information
+    // into the database.
     $('#addButton').click(() => {
         database.ref(`users/`).once('value', (snapshot) => {
             const data = snapshot.val();
@@ -35,6 +43,8 @@ $(document).ready(() => {
 
         });
 
+        // Get the image from the HTML and upload the file into the firebase
+        // storage. The url of the image is stored as a string into the database.
         const image = document.getElementById('cloth').files[0];
         const picName = (+new Date()) + '-' + name;
         const metadata = { contentType: image.type }

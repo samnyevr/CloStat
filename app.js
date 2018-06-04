@@ -1,6 +1,9 @@
 /*
  * Load the modules the app needs, then use GET requests to get the specified
- * web pages. 
+ * web pages. In addition, it will display a random image of one of the 
+ * clothes in the list of clothes suggested by the app on the home page. It
+ * will also store the lists of suggestions to the backend of the app for
+ * the other files to retrieve the information later.
  */
 
 /**
