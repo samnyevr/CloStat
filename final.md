@@ -88,4 +88,4 @@ Stat.js used google charts api to create data visualization on this page
 weather.js lets the user to allow the app to track user's location or manually enter the city, which the OpenWeatherMap API use to make a requests to get the latest weather information. After getting the weather information, the temperature is converted from Kelvin to Celsius, and the weather information is stored in local storage for other js files to use.  The corresponding weather information (temperature and weather condition) is then displayed on the web page.
 
 ### Video
-<iframe width=420px src="https://youtu.be/DmPP0yGF7wg" frameborder="0" allowfullscreen></iframe>
+https://youtu.be/DmPP0yGF7wg
