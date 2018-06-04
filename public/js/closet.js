@@ -33,7 +33,7 @@ $(document).ready(() =>{
 			console.log(bottom);
 			let number=1;
 			for(const key of keysT) {
-					
+
 					let imgUrl= top[key].photo;
 					let usageNumber=data[user].Clothes.Top[`${key}`].numberUsage
 					$('.panel-group').append(`<div class="panel panel-default"> <div class="panel-heading">
@@ -63,8 +63,8 @@ $(document).ready(() =>{
 			}
 
 			$('#ALL').click(()=>{
-				console.log("CT");
-
+				console.log("ALL");
+				$('.dropbtn').text('All Clothes');
 				let numberAll=1;
 				$('.panel-group').html('');
 				for(const key of keysT) {
@@ -102,7 +102,7 @@ $(document).ready(() =>{
 
 			$('#CT').click(()=>{
 				console.log("CT");
-
+				$('.dropbtn').text('Clean Top');
 				let numberCT=1;
 				$('.panel-group').html('');
 				for(const key of keysT) {
@@ -124,6 +124,7 @@ $(document).ready(() =>{
 			});
 
 			$('#CB').click(()=>{
+				$('.dropbtn').text('Clean Bottom');
 				console.log("CB");
 				$('.panel-group').html('');
 				let numberCB=1;
@@ -146,7 +147,7 @@ $(document).ready(() =>{
 
 			$('#DT').click(()=>{
 				console.log("DT");
-
+				$('.dropbtn').text('Dirty Top');
 				$('.panel-group').html('');
 				let numberDT=1;
 				for(const key of keysT) {
@@ -166,7 +167,9 @@ $(document).ready(() =>{
 				}
 			});
 
+
 			$('#DB').click(()=>{
+				$('.dropbtn').text('Dirty Bottom');
 				console.log("DB");
 				$('.panel-group').html('');
 				let numberDB=1;
@@ -187,17 +190,39 @@ $(document).ready(() =>{
 				}
 			});
 
+
 			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
+			let topClean = [];
+			let bottomClean = [];
+			let topDirty = [];
+			let bottomDirty = [];
+
+			for(const key of keysT) {
+				if (top[key].clean) {
+					  topClean.push(key);
+					}
+					else{
+						topDirty.push(key);
+					}
+				}
+				for(const key of keysB) {
+					if (bottom[key].clean) {
+						  bottomClean.push(key);
+						}
+						else{
+							bottomDirty.push(key);
+						}
+					}
 
 			function drawChart() {
 
 				var data = google.visualization.arrayToDataTable([
 					['Task', 'Hours per Day'],
-					['Clean Top',     7],
-					['Clean Bottom',      3],
-					['Dirty Top',  7],
-					['Dirty Bottom', 2],
+					['Clean Top',    topClean.length],
+					['Clean Bottom',    bottomClean.length],
+					['Dirty Top',   topDirty.length],
+					['Dirty Bottom',  bottomDirty.length],
 
 				]);
 
