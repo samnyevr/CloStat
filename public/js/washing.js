@@ -2,7 +2,7 @@
  * wahsing.js shows the user all the dirty clothes by getting
  * the data from the database.So user can know what clothes he or she
  * should do laundry on.
- * This page also tracks what user do for luandary, user can choose
+ * This page also tracks what user do for laundry, user can choose
  * from all the dirty clothes and then the data in the database will mark the
  * clothes as clean.
  */

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!--
+Creating the sign up html page by reading the user input and let the users sign up new accounts
+-->
 <html>
 
 <head>
@@ -22,22 +25,7 @@
   </script>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-  <!--
-  <script type="text/javascript">
-    $(document).ready(() => {
-      console.log("Ready to sign up!");
-      const database = firebase.database();
 
-      $('#signup').click(() => {
-        // Insert data into firebase
-        database.ref(`users/${$('#usernameinput').val()}`).set({
-          password: $('#passwordinput').val(),
-          email: $('#emailinput').val(),
-          location: $('#locationinput').val()
-        });
-      });
-    });
-  </script>-->
 </head>
 
 <body style="background-color: #eee;background-image:url(https://firebasestorage.googleapis.com/v0/b/clothstat.appspot.com/o/backgroundImg.png?alt=media&token=8a868fd8-c61f-47ce-b75d-ae1499fc758c); background-size:600px 600px;background-repeat: no-repeat;background-position: 35% -40%; ">
