@@ -100,29 +100,17 @@ body {
 /* Closet */
 .list{
     text-align: left;
-    margin-left: 10%;
+    margin-left: 60%;
     margin-top: 5%;
-}
-
-#under{
-  display: block;
-  margin-top: 50%;
-}
-
-.upper{
-  display: block;
-  margin-top: 0%;
-  margin-bottom: 50%;
 }
 
 #piechart{
   position: absolute;
   width:350px;
-  top: 5%;
-  left: -25%;
+  top: 40%;
+  left: -60px;
   height: 200px;
 }
-
 .dropbtn {
     float: left;
     color: black;
@@ -130,8 +118,7 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    margin-left: 200px;
-    margin-top: -75px;
+    margin-left: 50px;
     border-radius: 5%;
     box-shadow: 2px 2px rgb(93.3%,93.3%,93.3%);
     background-color:#ffe5aa;
@@ -161,7 +148,6 @@ body {
     position: absolute;
     background-color: white;
     min-width: 160px;
-    left: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }

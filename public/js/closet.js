@@ -30,8 +30,7 @@ $(document).ready(() =>{
 			const bottom = data[user].Clothes.Bottom;
 			const keysT = Object.keys(top);
 			const keysB = Object.keys(bottom);
-			let number=1;
-			$('.panel-group').html('');
+			console.log(bottom);
 			for(const key of keysT) {
 
 					let imgUrl= top[key].photo;
@@ -145,7 +144,7 @@ $(document).ready(() =>{
 			});
 
 			$('#DT').click(()=>{
-				console.log("CT");
+				console.log("DT");
 
 				$('.panel-group').html('');
 				let numberDT=1;
@@ -167,7 +166,7 @@ $(document).ready(() =>{
 			});
 
 			$('#DB').click(()=>{
-				console.log("CT");
+				console.log("DB");
 				$('.panel-group').html('');
 				let numberDB=1;
 				for(const key of keysB) {
@@ -199,7 +198,7 @@ $(document).ready(() =>{
 					['Dirty Top',  7],
 					['Dirty Bottom', 2],
 
-					]);
+				]);
 
 				var options = {
 					legend:'none',
