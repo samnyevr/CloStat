@@ -15,7 +15,7 @@ $(document).ready(() =>{
     }
   });
 
-  
+
 
   database.ref('users/').on('value', (snapshot) => {
     const data = snapshot.val();
@@ -30,17 +30,17 @@ $(document).ready(() =>{
         cleanArray.push(key);
         }
       }
-    
+
     console.log(cleanArray);
 
 
     let number=1;
-    $('.panel-group').html('');
+    $('#accordion').html('');
     for(const clothes of cleanArray) {
       let imgUrl= bottom[clothes].photo;
-      console.log(imgUrl);
+
       let usageNumber=data[user].Clothes.Bottom[`${clothes}`].numberUsage
-      $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading">
+      $('#accordion').append(` <div class="panel panel-default"> <div class="panel-heading">
       <p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p></div>
       <div class="round">
     					<input type="checkbox" id="checkbox${number}" value="${clothes}"/>
@@ -52,6 +52,30 @@ $(document).ready(() =>{
       number=number+1;
 
       }
+
+      $('#accordionOther').html('');
+      for(const clothes of topKey) {
+        if (bottom[clothes].clean) {
+
+          if(!cleanArray.includes(clothes)){
+
+        let imgUrl= bottom[clothes].photo;
+
+        let usageNumber=data[user].Clothes.Bottom[`${clothes}`].numberUsage
+        $('#accordionOther').append(` <div class="panel panel-default"> <div class="panel-heading">
+        <p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p></div>
+        <div class="round">
+      					<input type="checkbox" id="checkbox${number}" value="${clothes}"/>
+      					<label for="checkbox${number}"></label>
+    					</div>
+        <div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+        <img src="${imgUrl}" class="pic" width="120" src="/images/lightBlueJeans.jpeg">
+        <p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+        number=number+1;
+
+        }
+      }
+    }
     } catch(err) {
       window.alert(`${user} did not have any bottoms in the closet!`);
       console.log(err);

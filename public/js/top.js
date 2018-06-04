@@ -34,12 +34,12 @@ $(document).ready(() =>{
       console.log(cleanArray);
 
     let number=1;
-    $('.panel-group').html('');
+    $('#accordion').html('');
     for(const clothes of cleanArray) {
       let imgUrl= top[clothes].photo;
 
       let usageNumber=data[user].Clothes.Top[`${clothes}`].numberUsage
-      $('.panel-group').append(` <div class="panel panel-default"> <div class="panel-heading">
+      $('#accordion').append(` <div class="panel panel-default"> <div class="panel-heading">
       <p class="title" data-toggle="collapse" data-parent="#accordion" href="#collapse${number}"> ${clothes}</p>
 
           </div>
@@ -55,6 +55,36 @@ $(document).ready(() =>{
         number=number+1;
 
       }
+
+
+      $('#accordionOther').html('');
+      for(const clothes of topKey) {
+        if (top[clothes].clean) {
+
+          if(!cleanArray.includes(clothes)){
+
+
+        let imgUrl= top[clothes].photo;
+
+        let usageNumber=data[user].Clothes.Top[`${clothes}`].numberUsage
+        $('#accordionOther').append(` <div class="panel panel-default"> <div class="panel-heading">
+        <p class="title" data-toggle="collapse" data-parent="#accordionOther" href="#collapse${number}"> ${clothes}</p>
+
+            </div>
+            <div class="round">
+
+            <input type="checkbox" id="checkbox${number}" value="${clothes}" />
+            <label for="checkbox${number}"> </label>
+            </div>
+
+            <div id="collapse${number}" class="panel-collapse collapse"> <div class="panel-body">
+            <img src="${imgUrl}" class="pic" width="120" src="/images/blueShirt.jpg">
+            <p class="words">You have worn this shirt ${usageNumber} times this month. </p></div></div></div>`);
+          number=number+1;
+
+        }
+      }
+    }
     } catch(err) {
       window.alert(`${user} did not have any tops in the closet!`);
       console.log(err);
@@ -93,14 +123,14 @@ $(document).ready(() =>{
       for (const each of chkArray){
         let usage=data[each].numberUsage+1;
         console.log(usage);
-      //   database.ref(`users/${user}/Clothes/Top/${each}` ).update({
-      //    numberUsage: usage,
-      //    clean:false
-      //  });
+         database.ref(`users/${user}/Clothes/Top/${each}` ).update({
+          numberUsage: usage,
+          clean:false
+        });
 
-       database.ref(`users/${user}/Clothes/Top/${each}/usageDates`).update({
-        
-       });
+       //database.ref(`users/${user}/Clothes/Top/${each}/usageDates`).update({
+
+       //});
       }
     });
     /* we join the array separated by the comma */
