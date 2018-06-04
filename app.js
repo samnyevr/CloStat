@@ -1,3 +1,8 @@
+/*
+ * Load the modules the app needs, then use GET requests to get the specified
+ * web pages. 
+ */
+
 /**
  * Module dependencies.
  */
