@@ -1,3 +1,10 @@
+/*
+ * Filename: stat.js
+ * Description: The javascript file for data visualization page
+ * Note: We used google charts api to create data Visualization
+ *
+ */
+
 $(document).ready(() =>{
 	// Load the Visualization API and the corechart package.
 	google.charts.load('current', {'packages':['corechart']});
@@ -11,18 +18,15 @@ $(document).ready(() =>{
 
 	$("#diffForm").hide();
 
-	/*
-	google.charts.setOnLoadCallback(drawIntervalChart());
-	google.charts.setOnLoadCallback(drawLineChart());
-	google.charts.setOnLoadCallback(drawScatterChart());
-	*/
 
+});
+
+// the function that are called once the drop down menu is selected
+// for different data visualization
+function drawChart(chart){
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
 	// draws it.
-});
-
-function drawChart(chart){
 	if(chart == "Bar"){
 		$("#barForm").show();
 		$("#diffForm").hide();
@@ -55,6 +59,7 @@ function drawChart(chart){
 	}
 }
 
+// function that draws a barchart
 function drawBarChart(part) {
 
 	const user = localStorage['loggedInUser'];
@@ -99,6 +104,7 @@ function drawBarChart(part) {
 	}
 };
 
+// function that draws a bubblechart
 function drawBubbleChart() {
 
 	const user = localStorage['loggedInUser'];
@@ -163,6 +169,7 @@ function drawBubbleChart() {
 	}
 };
 
+// function that draws a calendar (currently not implemented)
 function drawCalendar() {
 
 	const user = localStorage['loggedInUser'];
@@ -212,6 +219,7 @@ function drawCalendar() {
 	}
 };
 
+// function that draws a columnchart
 function drawColumnChart(part) {
 
 	const user = localStorage['loggedInUser'];
@@ -250,6 +258,8 @@ function drawColumnChart(part) {
 	}
 };
 
+// function that draws a difference chart that compare the number of clothes in
+// different temperature of different categories
 function drawDiffChart() {
 
 	const user = localStorage['loggedInUser'];
@@ -320,6 +330,7 @@ function drawDiffChart() {
 	}
 };
 
+// function that draws a tree map
 function drawTreeMap() {
 
 	const user = localStorage['loggedInUser'];
