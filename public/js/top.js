@@ -93,13 +93,9 @@ $(document).ready(() =>{
       for (const each of chkArray){
         let usage=data[each].numberUsage+1;
         console.log(usage);
-      //   database.ref(`users/${user}/Clothes/Top/${each}` ).update({
-      //    numberUsage: usage,
-      //    clean:false
-      //  });
-
-       database.ref(`users/${user}/Clothes/Top/${each}/usageDates`).update({
-        
+        database.ref(`users/${user}/Clothes/Top/${each}` ).update({
+         numberUsage: usage,
+         clean:false
        });
       }
     });
