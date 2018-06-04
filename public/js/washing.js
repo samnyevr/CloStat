@@ -1,9 +1,21 @@
+/*
+ * wahsing.js shows the user all the dirty clothes by getting
+ * the data from the database.So user can know what clothes he or she
+ * should do laundry on.
+ * This page also tracks what user do for luandary, user can choose
+ * from all the dirty clothes and then the data in the database will mark the
+ * clothes as clean.
+ */
 $(document).ready(() =>{
   const database = firebase.database();
   const user = localStorage['loggedInUser'];
   console.log("hello");
 
 
+  /*
+   * Get the dirty clothes data from the database including top and bottom
+   * and append the data to the html file
+   */
   database.ref('users/').on('value', (snapshot) => {
     console.log("first once");
     const data = snapshot.val();
@@ -78,6 +90,9 @@ $(document).ready(() =>{
       getValueUsingClass();
 	});
 
+  /*
+   * Get the values of users' choices
+   */
   function getValueUsingClass(){
     console.log("data");
   /* declare an checkbox array */
@@ -89,8 +104,10 @@ $(document).ready(() =>{
 
   });
 
-  console.log(chkArray);
-  console.log(user);
+
+  /*
+   * update the clothes status to clean in the database
+   */
   database.ref(`users/${user}/Clothes`).once('value', (snapshot) => {
   const data = snapshot.val();
   console.log('You received some data!', data);

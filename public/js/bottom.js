@@ -1,10 +1,20 @@
+/*
+ * bottom.js shows the user the suitable bottom clothes by getting
+ * the data from the database.There are two sections, one is the
+ * recommended clothes, the other section is for other clean clothes.
+ * This page also tracks what user wear for the day, user can choose
+ * from the suggestion and then the data in the database will mark the
+ * clothes as dirty and increase the usage.
+ */
 $(document).ready(() =>{
   const database = firebase.database();
   const user = localStorage['loggedInUser'];
   console.log("hello");
 
+  /*
+   * Get the temperature for recommandation
+   */
   let tempName;
-
   $.ajax({
     url: 'getTemp',
     type: 'GET',
@@ -16,7 +26,10 @@ $(document).ready(() =>{
   });
 
 
-
+  /*
+   * Get the bottom clothes data from the database
+   * and append the new data to the html file
+   */
   database.ref('users/').on('value', (snapshot) => {
     const data = snapshot.val();
     const user = localStorage['loggedInUser'];
@@ -89,6 +102,9 @@ $(document).ready(() =>{
       getValueUsingClass();
 	});
 
+  /*
+   * Get the values of users' choices
+   */
   function getValueUsingClass(){
 
     console.log("data");
@@ -103,7 +119,9 @@ $(document).ready(() =>{
     chkArray.push($(this).val());
 	});
 
-  console.log(chkArray);
+  /*
+   * update the chosen clothes status to dirty and increase the usage in the database
+   */
   database.ref(`users/${user}/Clothes/Bottom`).once('value', (snapshot) => {
   const data = snapshot.val();
   // console.log('You received some data!', data);
