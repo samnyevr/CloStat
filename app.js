@@ -112,7 +112,9 @@ app.post('/suggestion',(req,res)=>{
 // Example route
 // app.get('/users', user.list);
 
-/* Create HTTP server object and listens to the computer */
-http.createServer(app).listen(app.get('port'), function(){
-	console.log('Express server listening on port ' + app.get('port'));
-});
+// /* Create HTTP server object and listens to the computer */
+// http.createServer(app).listen(app.get('port'), function(){
+// 	console.log('Express server listening on port ' + app.get('port'));
+// });
+
+app.listen(process.env.PORT || 3000) 
